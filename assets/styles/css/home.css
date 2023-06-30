@@ -1,8 +1,120 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  font-family: "Roboto", sans-serif;
+  font-size: 2rem;
+  margin: 0;
+  color: #FFD15B;
+  text-align: center;
+}
+
+h2 {
+  font-size: 2.5rem;
+  padding: 0;
+}
+
+p,
+span {
+  padding: 0;
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+li {
+  list-style: none;
+}
+
+i {
+  font-size: 1.2rem;
+  color: #fff;
+}
+
+input {
+  padding: 1rem;
+}
+
+:is(input, div, button, a, select, img, video, i):focus {
+  outline: none;
+  box-shadow: 0 0 0 1px white, 0 0 0 3px #FFD15B;
+}
+
 main {
-  max-width: 1440px;
   margin: auto;
   min-height: 100vh;
   background: #ededed;
 }
+
+main section {
+  max-width: 1440px;
+}
+
+main .filters {
+  padding: 2rem;
+}
+
+main .filters .filter-item {
+  display: flex;
+  justify-content: center;
+  background: #fff;
+  width: 200px;
+  border-radius: 10px;
+}
+
+main .filters .filter-item span {
+  padding: 1rem;
+}
+
+header {
+  height: 60vh;
+}
+
+header .header_content {
+  height: 100%;
+  width: 100%;
+  background-image: url("../../spagheti.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+header .header_content h1 {
+  max-width: 60%;
+  margin-bottom: 2rem;
+}
+
+header .header_content .search-bar {
+  position: relative;
+  width: 70%;
+  padding: 0.3rem;
+}
+
+header .header_content .search-bar .search {
+  width: 100%;
+  font-size: 1.1em;
+  padding: 1rem;
+  border-radius: 10px;
+  border: none;
+}
+
+header .header_content .search-bar button {
+  position: absolute;
+  right: 11px;
+  top: 11px;
+  height: 42px;
+  width: 45px;
+  border-radius: 10px;
+  border: none;
+  background: #1B1B1B;
+  cursor: pointer;
+}
+
+
 
 /*# sourceMappingURL=home.css.map */

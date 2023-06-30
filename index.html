@@ -7,21 +7,39 @@
 <!--    <link rel="icon" type="image/png" href="./assets/favicon.png">-->
     <title>Petits Plats</title>
 
-      <link rel="stylesheet" href="./assets/styles/css/styles.css" >
-<!--    <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">-->
+      <link rel="stylesheet" href="./assets/styles/css/home.css" >
+    <link crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+          integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+          referrerpolicy="no-referrer" rel="stylesheet"/>
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;700&family=Shrikhand&display=swap" rel="stylesheet">
   </head>
+
   <body>
     <header>
       <div class="header_content">
-<!--        <a href="https://benji-devw.github.io/Front-End-Fisheye/" aria-label="“Fisheye Home page">-->
-<!--          <img src="./assets/images/logo.png" class="logo" alt="Logo du site Fisheye"/>-->
-<!--        </a>-->
-        <h1>Les petits plats</h1>
+        <h1>CHERCHEZ PARMI PLUS DE 1500 RECETTES DU QUOTIDIEN,SIMPLES ET DÉLICIEUSES</h1>
+        <div class="search-bar">
+          <input class="search" type="search" placeholder="Rechercher une recette, un ingrédient, ...">
+          <button type="submit"><i class="fa-thin fa-magnifying-glass fa-solid"></i></button>
+        </div>
       </div>
     </header>
+
     <main id="main">
       <section class="home_section">
-          MAIN
+          <div class="filters">
+            <div class="filter-item ingredients">
+              <ul>
+                <span>Ingrédients</span>
+                <li><input class="search-ingredients" type="search"></li>
+                <li>Jus de citron</li>
+                <li>Glacons</li>
+                <li>Tomate</li>
+              </ul>
+            </div>
+          </div>
       </section>
     </main>
 

@@ -1,13 +1,87 @@
 @import './components/_variables';
-//@import './styles';
+@import './styles';
 
 main {
-  max-width: $maxW;
   margin: auto;
   min-height: 100vh;
   background: $color-grey;
+
+  section {
+    max-width: $maxW;
+  }
+
+  .filters {
+    padding: 2rem;
+
+     .filter-item {
+       display: flex;
+       justify-content: center;
+       background: #fff;
+       width: 200px;
+       border-radius: 10px;
+       //height: 50px;
+       //overflow: hidden;
+
+       span {
+         padding: 1rem;
+       }
+     }
+  }
 }
 
-.logo {
 
+
+
+
+
+
+
+
+
+
+
+header {
+  height: 60vh;
+
+  .header_content {
+    height: 100%;
+    width: 100%;
+    background-image: url("../../spagheti.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+
+    @include flex-col;
+    justify-content: center;
+
+    h1 {
+      max-width: 60%;
+      margin-bottom: 2rem;
+    }
+    .search-bar {
+      position: relative;
+      width: 70%;
+      padding: .3rem;
+
+      .search {
+        width: 100%;
+        font-size: 1.1em;
+        padding: 1rem;
+        border-radius: 10px;
+        border: none;
+      }
+      button {
+        position: absolute;
+        right: 11px;
+        top: 11px;
+        height: 42px;
+        width: 45px;
+        border-radius: 10px;
+        border: none;
+        background: $color-dark;
+        cursor: pointer;
+      }
+    }
+  }
 }
+
