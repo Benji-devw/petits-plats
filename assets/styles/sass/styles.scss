@@ -1,0 +1,50 @@
+//@import './components/_variables';
+@import './home';
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "DM Sans", sans-serif;
+  padding: 1rem;
+}
+
+
+header {
+  margin: auto;
+  padding: 0.5rem;
+  max-width: $maxW;
+}
+header .header_content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin: 0;
+}
+h2 {
+  font-size: 2.5rem;
+  padding: 0;
+}
+p,
+span {
+  padding: 0;
+  margin: 0;
+  font-size: 1.3rem;
+}
+i {
+  font-size: 1.2rem !important;
+}
+
+
+
+:is(div, button, a, select, img, video, i):focus {
+  outline: none;
+  box-shadow: 0 0 0 1px white, 0 0 0 3px red;
+}

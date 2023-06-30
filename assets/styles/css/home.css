@@ -1,6 +1,8 @@
 main {
+  max-width: 1440px;
+  margin: auto;
   min-height: 100vh;
-  background: #99E2D0;
+  background: #ededed;
 }
 
 /*# sourceMappingURL=home.css.map */
