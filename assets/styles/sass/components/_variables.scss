@@ -1,0 +1,51 @@
+// Variables //
+
+// Colors
+$colour-primary: #9356DC;
+$colour-primary-hover: #9256dc2f;
+$colour-secondary: #FF79DA;
+$colour-tertiaire: #99E2D0;
+$colour-novelty: #008766;
+$colour-grey: #F7F7F7;
+$colour-black-med: #353535;
+$colour-black: #101010;
+$colour-white: #fff;
+$main-gradient: linear-gradient(0, $colour-primary -11.44%, $colour-secondary 123.93%);
+
+// Fonts
+$font-Shrikhand : "Shrikhand", sans-serif !important;
+
+// Transition speed
+$fast: 0.3s ease;
+
+
+// Mixins
+@mixin linear-gradient-icon() {
+  background: -moz-linear-gradient(0, $colour-secondary -11.44%, $colour-primary 123.93%) right / 0 no-repeat;
+  background: -webkit-linear-gradient(0, $colour-secondary -11.44%, $colour-primary 123.93%) right / 0 no-repeat;
+  background: linear-gradient(0, $colour-secondary -11.44%, $colour-primary 123.93%) right / 0 no-repeat;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 1.2px $colour-black-med;
+}
+
+@mixin flex-row () {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+@mixin flex-col () {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+@mixin grid-row () {
+  display: grid;
+  grid-auto-rows: auto;
+  grid-gap: 2rem;
+}
+
+
