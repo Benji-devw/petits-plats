@@ -51,49 +51,39 @@ main {
   min-height: 100vh;
   background: #ededed;
 }
-
 main .filters .filters-accordion .accordion {
   position: relative;
 }
-
 main .filters .filters-accordion .accordion .accordion-collapse {
   position: absolute;
   background-color: #fff !important;
   z-index: 50;
 }
-
 main .filters .filters-accordion .filters-count-result {
   font-weight: bold;
 }
-
 main .filters .filter-item {
   width: 200px;
 }
-
 main .filters .filter-item .accordion-button {
   border: 2px solid transparent;
   background-color: #fff !important;
   box-shadow: none !important;
 }
-
 main .filters .filter-item .accordion-button:focus {
   border: 2px solid #FFD15B;
 }
-
 main .filters .filter-item ul {
   position: relative;
   padding: 0;
 }
-
 main .filters .filter-item ul li {
   padding: 0.4rem 0.7rem;
 }
-
 main .filters .filter-item ul li:hover {
   background-color: #FFD15B;
   cursor: pointer;
 }
-
 main .filters .filter-item input {
   border: 1px solid #C6C6C6;
   padding: 0.5rem;
@@ -102,14 +92,12 @@ main .filters .filter-item input {
   width: 90%;
   color: #C6C6C6;
 }
-
 main .filters .filter-item i {
   position: absolute;
   right: 20px;
   top: 20px;
   color: #C6C6C6;
 }
-
 .gallery {
   height: 100%;
 }
@@ -117,7 +105,6 @@ main .filters .filter-item i {
 header {
   height: 60vh;
 }
-
 header .header_content {
   height: 100%;
   width: 100%;
@@ -130,18 +117,15 @@ header .header_content {
   align-items: center;
   justify-content: center;
 }
-
 header .header_content h1 {
   max-width: 60%;
   margin-bottom: 2rem;
 }
-
 header .header_content .search-bar {
   position: relative;
   width: 70%;
   padding: 0.3rem;
 }
-
 header .header_content .search-bar .search {
   width: 100%;
   font-size: 1.1em;
@@ -149,7 +133,6 @@ header .header_content .search-bar .search {
   border-radius: 10px;
   border: none;
 }
-
 header .header_content .search-bar button {
   position: absolute;
   right: 11px;
@@ -161,7 +144,5 @@ header .header_content .search-bar button {
   background: #1B1B1B;
   cursor: pointer;
 }
-
-
 
 /*# sourceMappingURL=home.css.map */

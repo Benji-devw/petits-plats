@@ -6,49 +6,63 @@ main {
   min-height: 100vh;
   background: $color-grey;
 
-  section {
-    max-width: $maxW;
-  }
-
   .filters {
+    .filters-accordion {
+      .accordion {
+        position: relative;
+        .accordion-collapse {
+          position: absolute;
+          background-color: #fff !important;
+          z-index: 50;
+        }
+      }
+      .filters-count-result {
+        font-weight: bold;
+      }
+    }
 
      .filter-item {
        width: 200px;
-       //max-height: 300px;
-       //overflow: hidden;
-       //overflow-y: auto !important;
 
-      .accordion-button {
+      & .accordion-button {
+        border: 2px solid transparent;
         background-color: #fff !important;
         box-shadow: none !important;
+         &:focus {
+          border: 2px solid $color-yellow;
+         }
       }
-       .accordion-button:focus {
-        border: 2px solid $color-yellow;
+
+       & .search-ingredients-container {
+         //margin: 0 .5rem;
        }
 
-       .search-ingredients-container {
-         margin: 0 .5rem;
-       }
-
-       ul {
+       & ul {
          position: relative;
-         padding: .5rem;
+         padding: 0;
+         & li {
+           padding: .4rem .7rem;
+           &:hover {
+             background-color: $color-yellow;
+             cursor: pointer;
+           }
+         }
        }
-       input {
+       & input {
          border: 1px solid $color-grey-bis;
          padding: .5rem;
-         margin: .5rem 0;
+         margin: .5rem .5rem;
          border-radius: 3px;
-         width: 100%;
+         width: 90%;
          color: $color-grey-bis;
        }
-       i {
+       & i {
          position: absolute;
          right: 20px;
          top: 20px;
          color: $color-grey-bis;
        }
-       span {
+       & span {
          //margin: 1rem 0;
        }
      }
@@ -56,6 +70,12 @@ main {
 }
 
 
+
+
+
+.gallery {
+  height: 100%;
+}
 
 
 
