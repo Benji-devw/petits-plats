@@ -21,11 +21,15 @@ h2 {
   padding: 0;
 }
 
+h4 {
+  font-size: 1.2rem !important;
+  color: #7A7A7A !important;
+}
+
 p,
 span {
   padding: 0;
   margin: 0;
-  font-size: 1.1rem;
 }
 
 li {
@@ -44,74 +48,6 @@ label {
 :is(input, div, button, a, select, img, video, i):focus {
   outline: none;
   box-shadow: 0 0 0 1px white, 0 0 0 3px #FFD15B;
-}
-
-main {
-  margin: auto;
-  min-height: 100vh;
-  background: #ededed;
-}
-
-main .filters .filters-accordion .accordion {
-  position: relative;
-}
-
-main .filters .filters-accordion .accordion .accordion-collapse {
-  position: absolute;
-  background-color: #fff !important;
-  z-index: 50;
-}
-
-main .filters .filters-accordion .filters-count-result {
-  font-weight: bold;
-}
-
-main .filters .filter-item {
-  width: 200px;
-}
-
-main .filters .filter-item .accordion-button {
-  border: 2px solid transparent;
-  background-color: #fff !important;
-  box-shadow: none !important;
-}
-
-main .filters .filter-item .accordion-button:focus {
-  border: 2px solid #FFD15B;
-}
-
-main .filters .filter-item ul {
-  position: relative;
-  padding: 0;
-}
-
-main .filters .filter-item ul li {
-  padding: 0.4rem 0.7rem;
-}
-
-main .filters .filter-item ul li:hover {
-  background-color: #FFD15B;
-  cursor: pointer;
-}
-
-main .filters .filter-item input {
-  border: 1px solid #C6C6C6;
-  padding: 0.5rem;
-  margin: 0.5rem 0.5rem;
-  border-radius: 3px;
-  width: 90%;
-  color: #C6C6C6;
-}
-
-main .filters .filter-item i {
-  position: absolute;
-  right: 20px;
-  top: 20px;
-  color: #C6C6C6;
-}
-
-.gallery {
-  height: 100%;
 }
 
 header {
@@ -152,14 +88,111 @@ header .header_content .search-bar .search {
 
 header .header_content .search-bar button {
   position: absolute;
-  right: 11px;
-  top: 11px;
+  right: 13px;
+  top: 13px;
   height: 42px;
   width: 45px;
   border-radius: 10px;
   border: none;
   background: #1B1B1B;
   cursor: pointer;
+}
+
+main {
+  margin: auto;
+  min-height: 100vh;
+  background: #ededed;
+}
+
+main #filters_section .filters-accordion .accordion {
+  position: relative;
+}
+
+main #filters_section .filters-accordion .accordion .accordion-collapse {
+  position: absolute;
+  background-color: #fff !important;
+  z-index: 50;
+}
+
+main #filters_section .filters-accordion .filters-count-result {
+  font-weight: bold;
+}
+
+main #filters_section .filter-item {
+  width: 200px;
+}
+
+main #filters_section .filter-item .accordion-button {
+  border: 2px solid transparent;
+  background-color: #fff !important;
+  box-shadow: none !important;
+}
+
+main #filters_section .filter-item .accordion-button:focus {
+  border: 2px solid #FFD15B;
+}
+
+main #filters_section .filter-item ul {
+  position: relative;
+  padding: 0;
+}
+
+main #filters_section .filter-item ul li {
+  padding: 0.4rem 0.7rem;
+}
+
+main #filters_section .filter-item ul li:hover {
+  background-color: #FFD15B;
+  cursor: pointer;
+}
+
+main #filters_section .filter-item input {
+  border: 1px solid #7A7A7A;
+  padding: 0.5rem;
+  margin: 0.5rem 0.5rem;
+  border-radius: 3px;
+  width: 90%;
+  color: #7A7A7A;
+}
+
+main #filters_section .filter-item i {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  color: #7A7A7A;
+}
+
+main #tags {
+  min-height: 50px;
+}
+
+main #gallery_section {
+  min-height: 30vh;
+}
+
+main #gallery_section .card-container {
+  max-width: 380px;
+}
+
+main #gallery_section .card-container .card {
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+main #gallery_section .card-container .card .time {
+  top: 1rem;
+  right: 1rem;
+  background-color: #FFD15B;
+  padding: 0.2rem 0.5rem;
+}
+
+main #gallery_section .card-container .card img {
+  height: 230px;
+  object-fit: cover;
+}
+
+main #gallery_section .card-container .card .card-body li p {
+  color: #7A7A7A;
 }
 
 

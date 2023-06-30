@@ -31,7 +31,7 @@
     </header>
 
     <main id="main">
-      <section class="filters_section">
+      <section id="filters_section" class="filters_section mx-auto">
           <article class="filters p-3 position-relative">
             <div class="filters-accordion w-100 d-flex flex-wrap" id="accordionFlushExample">
               <div class="accordion accordion-flush filter-item my-2 mx-5">
@@ -68,7 +68,7 @@
                 <div class="accordion-item">
                   <h2 class="accordion-header">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                      Ingrédients
+                      Appareils
                     </button>
                   </h2>
                   <div id="collapseTwo" class="accordion-collapse collapse " data-bs-parent="#accordionFlushExample">
@@ -98,7 +98,7 @@
                 <div class="accordion-item">
                   <h2 class="accordion-header">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
-                      Ingrédients
+                      Ustensiles
                     </button>
                   </h2>
                   <div id="collapseThree" class="accordion-collapse collapse " data-bs-parent="#accordionFlushExample">
@@ -124,22 +124,20 @@
                   </div>
                 </div>
               </div>
-              <div class="filters-count-result align-self-center">29 recettes</div>
+              <div class="filters-count-result align-self-center"><span></span> recettes</div>
             </div>
           </article>
 
           <article class="tags"></article>
       </section>
 
-      <section class="gallery_section">
-          <article>
-            <div class="gallery">qsdqsdqskldjqskldjqklsjdklqs</div>
-          </article>
+      <section id="gallery_section" class="gallery_section d-flex flex-wrap gap-5 mx-auto" >
+        <div class="gallery d-flex flex-wrap gap-5 justify-content-around p-3"></div>
       </section>
     </main>
 
     <!-- App -->
-    <!-- <script type="module" src="./scripts/App.js"></script> -->
+     <script type="module" src="./scripts/App.js"></script>
 
     <!-- Bootstrap -->
     <script src="./assets/lib/bootstrap-5.3.0-dist/js/bootstrap.js"></script>

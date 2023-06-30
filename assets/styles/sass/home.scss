@@ -1,12 +1,58 @@
 @import './components/_variables';
 @import './_styles';
 
+header {
+  height: 60vh;
+
+  .header_content {
+    height: 100%;
+    width: 100%;
+    background-image: url("../../spagheti.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+
+    @include flex-col;
+    justify-content: center;
+
+    h1 {
+      max-width: 60%;
+      margin-bottom: 2rem;
+    }
+    .search-bar {
+      position: relative;
+      width: 70%;
+      padding: .3rem;
+
+      .search {
+        width: 100%;
+        font-size: 1.1em;
+        padding: 1rem;
+        border-radius: 10px;
+        border: none;
+      }
+      button {
+        position: absolute;
+        right: 13px;
+        top: 13px;
+        height: 42px;
+        width: 45px;
+        border-radius: 10px;
+        border: none;
+        background: $color-dark;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
 main {
   margin: auto;
   min-height: 100vh;
   background: $color-grey;
 
-  .filters {
+
+   #filters_section {
     .filters-accordion {
       .accordion {
         position: relative;
@@ -62,72 +108,50 @@ main {
          top: 20px;
          color: $color-grey-bis;
        }
-       & span {
-         //margin: 1rem 0;
-       }
      }
   }
-}
+
+
+  #tags {
+    min-height: 50px;
+  }
 
 
 
+  #gallery_section {
+    min-height: 30vh;
 
-
-.gallery {
-  height: 100%;
-}
-
-
-
-
-
-
-
-
-
-
-header {
-  height: 60vh;
-
-  .header_content {
-    height: 100%;
-    width: 100%;
-    background-image: url("../../spagheti.jpg");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-
-    @include flex-col;
-    justify-content: center;
-
-    h1 {
-      max-width: 60%;
-      margin-bottom: 2rem;
-    }
-    .search-bar {
-      position: relative;
-      width: 70%;
-      padding: .3rem;
-
-      .search {
-        width: 100%;
-        font-size: 1.1em;
-        padding: 1rem;
-        border-radius: 10px;
-        border: none;
-      }
-      button {
-        position: absolute;
-        right: 11px;
-        top: 11px;
-        height: 42px;
-        width: 45px;
-        border-radius: 10px;
-        border: none;
-        background: $color-dark;
-        cursor: pointer;
+    & .card-container {
+      max-width: 380px;
+      & .card {
+        //height: 100%;
+        border-radius: 20px;
+        overflow: hidden;
+        & .time {
+          top: 1rem;
+          right: 1rem;
+          background-color: $color-yellow;
+          padding: .2rem .5rem;
+        }
+        & img {
+          height: 230px;
+          object-fit: cover;
+        }
+        & .card-body {
+          & li {
+            & p {
+              color: $color-grey-bis;
+            }
+          }
+        }
       }
     }
   }
+
+
 }
+
+
+
+
 
