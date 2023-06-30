@@ -7,21 +7,24 @@
 <!--    <link rel="icon" type="image/png" href="./assets/favicon.png">-->
     <title>Petits Plats</title>
 
-      <link rel="stylesheet" href="./assets/styles/css/home.css" >
+    <link rel="stylesheet" href="./assets/styles/css/home.css" >
     <link crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
           integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
           referrerpolicy="no-referrer" rel="stylesheet"/>
-      <link rel="preconnect" href="https://fonts.googleapis.com">
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-      <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;700&family=Shrikhand&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;700&family=Shrikhand&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/lib/bootstrap-5.3.0-dist/css/bootstrap.min.css">
   </head>
 
   <body>
     <header>
       <div class="header_content">
-        <h1>CHERCHEZ PARMI PLUS DE 1500 RECETTES DU QUOTIDIEN,SIMPLES ET DÉLICIEUSES</h1>
+        <h1>CHERCHEZ PARMI PLUS DE 1500 RECETTES DU QUOTIDIEN,SIMPLES ET CALICIVIRUSES</h1>
         <div class="search-bar">
-          <input class="search" type="search" placeholder="Rechercher une recette, un ingrédient, ...">
+          <label for="search">search</label>
+          <input id="search" class="search" type="search" placeholder="Rechercher une recette, un ingrédient, ...">
           <button type="submit"><i class="fa-thin fa-magnifying-glass fa-solid"></i></button>
         </div>
       </div>
@@ -29,21 +32,46 @@
 
     <main id="main">
       <section class="home_section">
-          <div class="filters">
-            <div class="filter-item ingredients">
-              <ul>
-                <span>Ingrédients</span>
-                <li><input class="search-ingredients" type="search"></li>
-                <li>Jus de citron</li>
-                <li>Glacons</li>
-                <li>Tomate</li>
-              </ul>
+          <div class="filters p-3">
+            <div class="accordion filter-item">
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    Ingrédients
+                  </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                  <div class="accordion-body p-1">
+                    <div class="search-ingredients-container position-relative">
+                      <label for="search-ingredients">search</label>
+                      <input id="search-ingredients" class="search-ingredients" type="search">
+                      <i class="fa-thin fa-magnifying-glass fa-solid"></i>
+                    </div>
+                    <ul>
+                      <li>Jus de citron</li>
+                      <li>Glacons</li>
+                      <li>Tomate</li>
+                      <li>Jus de citron</li>
+                      <li>Glacons</li>
+                      <li>Tomate</li>
+                      <li>Tomate</li>
+                      <li>Jus de citron</li>
+                      <li>Glacons</li>
+                      <li>Tomate</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
             </div>
+
           </div>
       </section>
     </main>
 
     <!-- App -->
-<!--    <script type="module" src="./scripts/App.js"></script>-->
+    <!-- <script type="module" src="./scripts/App.js"></script> -->
+
+    <!-- Bootstrap -->
+    <script src="./assets/lib/bootstrap-5.3.0-dist/js/bootstrap.js"></script>
   </body>
 </html>

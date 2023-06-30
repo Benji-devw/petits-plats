@@ -1,5 +1,5 @@
 @import './components/_variables';
-@import './styles';
+@import './_styles';
 
 main {
   margin: auto;
@@ -11,19 +11,45 @@ main {
   }
 
   .filters {
-    padding: 2rem;
 
      .filter-item {
-       display: flex;
-       justify-content: center;
-       background: #fff;
        width: 200px;
-       border-radius: 10px;
-       //height: 50px;
+       //max-height: 300px;
        //overflow: hidden;
+       //overflow-y: auto !important;
 
+      .accordion-button {
+        background-color: #fff !important;
+        box-shadow: none !important;
+      }
+       .accordion-button:focus {
+        border: 2px solid $color-yellow;
+       }
+
+       .search-ingredients-container {
+         margin: 0 .5rem;
+       }
+
+       ul {
+         position: relative;
+         padding: .5rem;
+       }
+       input {
+         border: 1px solid $color-grey-bis;
+         padding: .5rem;
+         margin: .5rem 0;
+         border-radius: 3px;
+         width: 100%;
+         color: $color-grey-bis;
+       }
+       i {
+         position: absolute;
+         right: 20px;
+         top: 20px;
+         color: $color-grey-bis;
+       }
        span {
-         padding: 1rem;
+         //margin: 1rem 0;
        }
      }
   }
