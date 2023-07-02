@@ -40,10 +40,10 @@ function createLiElement(item, elem) {
 /**
  * @description Filter array
  * @param {string} event - Term search advanced filter
- * @param {array} arr - Term search advanced filter
+ * @param {array} arr - Advanced filter items
  * @param {Element} elem - Html element for inner
  **********************************/
-function searchBarAdvancedFilter(event, arr, elem) {
+function advancedFilterBar(event, arr, elem) {
     const filtered = arr.filter(item => {
         return item.toLowerCase().includes(event)
     })
@@ -71,13 +71,10 @@ function renderAdvancedFilters(recipes, val) {
         if (val === 'ingredients') {
             ingredientsArray = ingredientsArray.concat(ingredientLower);
             ingredientsArray = ingredientsArray.filter((item, index) => {
-                // console.log(recipe)
                 return ingredientsArray.indexOf(item) === index;
             });
         }
-        else if (val === 'appareils') {
-
-        }
+        else if (val === 'appareils') {}
     })
 
     ingredientsArray.forEach(item => {
@@ -86,7 +83,14 @@ function renderAdvancedFilters(recipes, val) {
 
     searchBarIngredients.addEventListener('input', (event) => {
         ingredientsFilter.innerHTML = '';
-        searchBarAdvancedFilter(event.target.value.toLowerCase(), ingredientsArray, ingredientsFilter)
+        advancedFilterBar(event.target.value.toLowerCase(), ingredientsArray, ingredientsFilter)
+    })
+
+    const items = document.querySelectorAll('.ingredients-filter li')
+        items.forEach(item => {
+            item.addEventListener('click', () => {
+            console.log(item.textContent)
+        })
     })
 
     // console.log(ingredientsArray)
@@ -107,7 +111,10 @@ function renderRecipes(recipes) {
 
         galleryElement.appendChild(cardElement);
     });
+    renderAdvancedFilters(recipes, 'ingredients')
 }
+
+
 
 
 /**
@@ -116,18 +123,14 @@ function renderRecipes(recipes) {
  **********************************/
 function App() {
     let data = recipes
-
     const galleryElement = document.querySelector('#gallery_section .gallery');
     const searchBar = document.querySelector('.search-bar .search');
-    // const searchSubmit = document.querySelector('.search-bar button')
 
     renderRecipes(data)
 
     searchBar.addEventListener('input', (event) => {
         if (event.target.value.length > 2) {
             const filteredData = filterBarRecipes(event.target.value.toLowerCase(), data);
-            renderAdvancedFilters(filteredData, 'ingredients')
-
             galleryElement.innerHTML = '';
             renderRecipes(filteredData)
         } else {
@@ -135,8 +138,6 @@ function App() {
             renderRecipes(data)
         }
     })
-
-
 }
 App();
 
