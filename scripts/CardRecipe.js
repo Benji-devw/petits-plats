@@ -1,5 +1,5 @@
 /**
- * @description Construct card html
+ * @description Construct html Card
  * @param {object} data - Card recipe
  **********************************/
 export default function CardRecipe(data) {
