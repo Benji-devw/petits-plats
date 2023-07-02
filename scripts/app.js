@@ -11,9 +11,6 @@ import CardRecipe from "./CardRecipe.js";
  * @returns {array} - Data filtered
  **********************************/
 function filterBarRecipes(searchValue, data) {
-    // Convert the search value to lowercase for matching
-    const searchTerm = searchValue.toLowerCase();
-
     // Filter the data based on the search term
     return data.filter(recipe => {
         const recipeDescription = recipe.description.toLowerCase();
@@ -21,17 +18,17 @@ function filterBarRecipes(searchValue, data) {
         const recipeAppliance = recipe.appliance.toLowerCase()
 
         return (
-            recipeName.includes(searchTerm) ||
-            recipeDescription.includes(searchTerm) ||
-            recipeAppliance.includes(searchTerm)
+            recipeName.includes(searchValue) ||
+            recipeDescription.includes(searchValue) ||
+            recipeAppliance.includes(searchValue)
         );
     });
 }
 
 /**
  * @description Create li element
- * @param {item} - Item of advanced filter
- * @param {element} - Html element for inner
+ * @param {string} item - Item of advanced filter
+ * @param {Element} elem - Html element for inner
  **********************************/
 function createLiElement(item, elem) {
     const liElement = document.createElement('li');
@@ -42,13 +39,13 @@ function createLiElement(item, elem) {
 
 /**
  * @description Filter array
- * @param {item} - Item of advanced filter array
- * @param {element} - Html element for inner
+ * @param {string} event - Term search advanced filter
+ * @param {array} arr - Term search advanced filter
+ * @param {Element} elem - Html element for inner
  **********************************/
 function searchBarAdvancedFilter(event, arr, elem) {
-    const termVal = event.target.value.toLowerCase()
     const filtered = arr.filter(item => {
-        return item.toLowerCase().includes(termVal)
+        return item.toLowerCase().includes(event)
     })
     filtered.forEach(item => {
         createLiElement(item, elem)
@@ -59,7 +56,8 @@ function searchBarAdvancedFilter(event, arr, elem) {
 /**
  * @description Filter for Ingredients advanced filter
  * @param {array} recipes - Data result search bar
- * @returns {element} - li Element
+ * @param {string} val - Name of advanced filter
+ // * @returns {element} li - Html element
  **********************************/
 function renderAdvancedFilters(recipes, val) {
     const ingredientsFilter = document.querySelector('.ingredients-filter');
@@ -73,7 +71,7 @@ function renderAdvancedFilters(recipes, val) {
         if (val === 'ingredients') {
             ingredientsArray = ingredientsArray.concat(ingredientLower);
             ingredientsArray = ingredientsArray.filter((item, index) => {
-                console.log(recipe)
+                // console.log(recipe)
                 return ingredientsArray.indexOf(item) === index;
             });
         }
@@ -88,7 +86,7 @@ function renderAdvancedFilters(recipes, val) {
 
     searchBarIngredients.addEventListener('input', (event) => {
         ingredientsFilter.innerHTML = '';
-        searchBarAdvancedFilter(event, ingredientsArray, ingredientsFilter)
+        searchBarAdvancedFilter(event.target.value.toLowerCase(), ingredientsArray, ingredientsFilter)
     })
 
     // console.log(ingredientsArray)
@@ -128,7 +126,7 @@ function App() {
 
     searchBar.addEventListener('input', (event) => {
         if (event.target.value.length > 2) {
-            const filteredData = filterBarRecipes(event.target.value, data);
+            const filteredData = filterBarRecipes(event.target.value.toLowerCase(), data);
             galleryElement.innerHTML = '';
             renderRecipes(filteredData)
         } else renderRecipes(data)
