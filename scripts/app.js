@@ -107,7 +107,6 @@ function renderRecipes(recipes) {
 
         galleryElement.appendChild(cardElement);
     });
-    renderAdvancedFilters(recipes, 'ingredients')
 }
 
 
@@ -127,9 +126,14 @@ function App() {
     searchBar.addEventListener('input', (event) => {
         if (event.target.value.length > 2) {
             const filteredData = filterBarRecipes(event.target.value.toLowerCase(), data);
+            renderAdvancedFilters(filteredData, 'ingredients')
+
             galleryElement.innerHTML = '';
             renderRecipes(filteredData)
-        } else renderRecipes(data)
+        } else {
+            galleryElement.innerHTML = '';
+            renderRecipes(data)
+        }
     })
 
 
