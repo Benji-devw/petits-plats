@@ -57,7 +57,7 @@ header {
 header .header_content {
   height: 100%;
   width: 100%;
-  background-image: url("../../spagheti.jpg");
+  background-image: url("../../bg-header.jpg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
