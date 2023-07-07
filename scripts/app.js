@@ -15,13 +15,17 @@ function filterBarRecipes(searchValue, data) {
     return data.filter(recipe => {
         const recipeDescription = recipe.description.toLowerCase();
         const recipeName = recipe.name.toLowerCase();
-        const recipeAppliance = recipe.appliance.toLowerCase()
 
-        return (
-            recipeName.includes(searchValue) ||
-            recipeDescription.includes(searchValue) ||
-            recipeAppliance.includes(searchValue)
-        );
+        if (recipeName.includes(searchValue) ||
+            recipeDescription.includes(searchValue)) {
+            return true
+        } else {
+            const findIngredient = recipe.ingredients.find(ingredient => {
+                return ingredient.ingredient.toLowerCase().includes(searchValue)
+            })
+            return !!findIngredient
+        }
+
     });
 }
 
