@@ -50,10 +50,15 @@ label {
   box-shadow: 0 0 0 1px white, 0 0 0 3px #FFD15B;
 }
 
+.filter-container li {
+  width: 150px;
+  border: 1px solid black;
+  margin: 1rem;
+}
+
 header {
   height: 60vh;
 }
-
 header .header_content {
   height: 100%;
   width: 100%;
@@ -66,18 +71,15 @@ header .header_content {
   align-items: center;
   justify-content: center;
 }
-
 header .header_content h1 {
   max-width: 60%;
   margin-bottom: 2rem;
 }
-
 header .header_content .search-bar {
   position: relative;
   width: 70%;
   padding: 0.3rem;
 }
-
 header .header_content .search-bar .search {
   width: 100%;
   font-size: 1.1em;
@@ -85,7 +87,6 @@ header .header_content .search-bar .search {
   border-radius: 10px;
   border: none;
 }
-
 header .header_content .search-bar button {
   position: absolute;
   right: 13px;
@@ -103,49 +104,39 @@ main {
   min-height: 100vh;
   background: #ededed;
 }
-
 main #filters_section .filters-accordion .accordion {
   position: relative;
 }
-
 main #filters_section .filters-accordion .accordion .accordion-collapse {
   position: absolute;
   background-color: #fff !important;
   z-index: 50;
 }
-
 main #filters_section .filters-accordion .filters-count-result {
   font-weight: bold;
 }
-
 main #filters_section .filter-item {
   width: 200px;
 }
-
 main #filters_section .filter-item .accordion-button {
   border: 2px solid transparent;
   background-color: #fff !important;
   box-shadow: none !important;
 }
-
 main #filters_section .filter-item .accordion-button:focus {
   border: 2px solid #FFD15B;
 }
-
 main #filters_section .filter-item ul {
   position: relative;
   padding: 0;
 }
-
 main #filters_section .filter-item ul li {
   padding: 0.4rem 0.7rem;
 }
-
 main #filters_section .filter-item ul li:hover {
   background-color: #FFD15B;
   cursor: pointer;
 }
-
 main #filters_section .filter-item input {
   border: 1px solid #7A7A7A;
   padding: 0.5rem;
@@ -154,47 +145,37 @@ main #filters_section .filter-item input {
   width: 90%;
   color: #7A7A7A;
 }
-
 main #filters_section .filter-item i {
   position: absolute;
   right: 20px;
   top: 20px;
   color: #7A7A7A;
 }
-
 main #tags {
   min-height: 50px;
 }
-
 main #gallery_section {
   min-height: 30vh;
 }
-
 main #gallery_section .card-container {
   max-width: 380px;
 }
-
 main #gallery_section .card-container .card {
   border-radius: 20px;
   overflow: hidden;
 }
-
 main #gallery_section .card-container .card .time {
   top: 1rem;
   right: 1rem;
   background-color: #FFD15B;
   padding: 0.2rem 0.5rem;
 }
-
 main #gallery_section .card-container .card img {
   height: 230px;
   object-fit: cover;
 }
-
 main #gallery_section .card-container .card .card-body li p {
   color: #7A7A7A;
 }
-
-
 
 /*# sourceMappingURL=home.css.map */

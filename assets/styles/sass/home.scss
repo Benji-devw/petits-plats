@@ -1,13 +1,19 @@
 @import './components/_variables';
 @import './_styles';
 
+.filter-container li {
+  width: 150px;
+  border: 1px solid black;
+  margin: 1rem;
+}
+
 header {
   height: 60vh;
 
   .header_content {
     height: 100%;
     width: 100%;
-    background-image: url("../../spagheti.jpg");
+    background-image: url("../../bg-header.jpg");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;

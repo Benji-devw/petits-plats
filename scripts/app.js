@@ -10,24 +10,28 @@ import CardRecipe from "./CardRecipe.js";
  * @param {array} data - All Data
  * @returns {array} - Data filtered
  **********************************/
-function filterBarRecipes(searchValue, data) {
-    // Filter the data based on the search term
+function filterRecipes(searchValue, data, selectedIngredients) {
     return data.filter(recipe => {
-        const recipeDescription = recipe.description.toLowerCase();
-        const recipeName = recipe.name.toLowerCase();
-
-        if (recipeName.includes(searchValue) ||
-            recipeDescription.includes(searchValue)) {
-            return true
+        if (recipe.name.toLowerCase().includes(searchValue) ||
+            recipe.description.toLowerCase().includes(searchValue)) {
+            return true;
         } else {
             const findIngredient = recipe.ingredients.find(ingredient => {
-                return ingredient.ingredient.toLowerCase().includes(searchValue)
-            })
-            return !!findIngredient
+                return ingredient.ingredient.toLowerCase().includes(searchValue);
+            });
+            return !!findIngredient;
         }
-
-    });
+    })
+    //     .filter(recipe => {
+    //     return selectedIngredients.every(ingredient => {
+    //         return recipe.ingredients.some(item => {
+    //             return item.ingredient.toLowerCase().includes(ingredient.toLowerCase());
+    //         });
+    //     });
+    // });
 }
+
+
 
 /**
  * @description Create li element
@@ -39,6 +43,7 @@ function createLiElement(item, elem) {
     liElement.textContent = item;
     elem.appendChild(liElement);
 }
+
 
 
 /**
@@ -57,13 +62,35 @@ function advancedFilterBar(event, arr, elem) {
 }
 
 
+
+function removeFilterButton(ingredient) {
+    const filterContainer = document.querySelector('.filter-container');
+    const filterButtons = filterContainer.querySelectorAll('li');
+    filterButtons.forEach(button => {
+        if (button.textContent === ingredient) {
+            filterContainer.removeChild(button);
+        }
+    });
+}
+function createFilterButton(ingredient) {
+    const filterContainer = document.querySelector('.filter-container');
+    const filterButton = document.createElement('li');
+    filterButton.textContent = ingredient;
+    filterButton.addEventListener('click', () => {
+        removeFilterButton(ingredient);
+    });
+    filterContainer.appendChild(filterButton);
+}
+
+
+
 /**
  * @description Filter for Ingredients advanced filter
  * @param {array} recipes - Data result search bar
  * @param {string} val - Name of advanced filter
  // * @returns {element} li - Html element
  **********************************/
-function renderAdvancedFilters(recipes, val) {
+function filterBarIngredients(recipes) {
     const ingredientsFilter = document.querySelector('.ingredients-filter');
     const searchBarIngredients = document.querySelector('.search-ingredients')
 
@@ -72,50 +99,38 @@ function renderAdvancedFilters(recipes, val) {
 
     recipes.forEach(recipe => {
         const ingredientLower = recipe.ingredients.map(arr => arr.ingredient.toLowerCase());
-        if (val === 'ingredients') {
-            ingredientsArray = ingredientsArray.concat(ingredientLower);
-            ingredientsArray = ingredientsArray.filter((item, index) => {
-                return ingredientsArray.indexOf(item) === index;
-            });
-        }
-        else if (val === 'appareils') {}
+        ingredientsArray = ingredientsArray.concat(ingredientLower);
+        ingredientsArray = ingredientsArray.filter((item, index) => {
+            return ingredientsArray.indexOf(item) === index;
+        });
+    })
+    searchBarIngredients.addEventListener('input', (event) => {
+        ingredientsFilter.innerHTML = '';
+        advancedFilterBar(event.target.value.toLowerCase(), ingredientsArray, ingredientsFilter)
     })
 
     ingredientsArray.forEach(item => {
         createLiElement(item, ingredientsFilter)
     });
 
-    searchBarIngredients.addEventListener('input', (event) => {
-        ingredientsFilter.innerHTML = '';
-        advancedFilterBar(event.target.value.toLowerCase(), ingredientsArray, ingredientsFilter)
-    })
-
-    const items = document.querySelectorAll('.ingredients-filter li')
-        items.forEach(item => {
-            item.addEventListener('click', () => {
-            console.log(item.textContent)
-        })
-    })
-
-    // console.log(ingredientsArray)
 }
 
 
 
-
 function renderRecipes(recipes) {
-    const galleryElement = document.querySelector('#gallery_section .gallery');
-    document.querySelector('.filters-count-result span').innerHTML = recipes.length
+    document.querySelector('.filters-count-result span').innerHTML = `${recipes.length}`;
+        const galleryElement = document.querySelector('#gallery_section .gallery');
+
+    // const test = filterBarIngredients(recipes)
 
     recipes.forEach(recipe => {
         const cardHTML = CardRecipe(recipe);
+        // filterBarIngredients(recipes)
         const cardElement = document.createElement('article');
         cardElement.classList.add('card-container');
         cardElement.innerHTML = cardHTML;
-
         galleryElement.appendChild(cardElement);
     });
-    renderAdvancedFilters(recipes, 'ingredients')
 }
 
 
@@ -129,12 +144,13 @@ function App() {
     let data = recipes
     const galleryElement = document.querySelector('#gallery_section .gallery');
     const searchBar = document.querySelector('.search-bar .search');
-
+    let newData = []
     renderRecipes(data)
+    // filterBarIngredients(newData.length <= 0 ? data : newData)
 
     searchBar.addEventListener('input', (event) => {
         if (event.target.value.length > 2) {
-            const filteredData = filterBarRecipes(event.target.value.toLowerCase(), data);
+            const filteredData = filterRecipes(event.target.value.toLowerCase(), data, []);
             galleryElement.innerHTML = '';
             renderRecipes(filteredData)
         } else {
@@ -142,6 +158,39 @@ function App() {
             renderRecipes(data)
         }
     })
+
+    // const ingredientsItems = document.querySelectorAll('.ingredients-filter li');
+    // const filterContainer = document.querySelectorAll('.filter-container li');
+    // const arr = []
+    // ingredientsItems.forEach(item => {
+    //     item.addEventListener('click', (event) => {
+    //         console.log(newData)
+    //
+    //         const clickedIngredient = event.target.textContent;
+    //         if (!arr.includes(clickedIngredient)) {
+    //             arr.push(clickedIngredient);
+    //             console.log(arr);
+    //             createFilterButton(clickedIngredient);
+    //         }
+    //         galleryElement.innerHTML = '';
+    //         const filteredData = filterRecipes(val, recipes, arr);
+    //         // console.log(filteredData)
+    //         renderRecipes(filteredData);
+    //     });
+    // });
+    // filterContainer.forEach(itemTest => {
+    //     itemTest.addEventListener('click', (event) => {
+    //         const clickedIngredient = event.target.textContent;
+    //         arr.splice(arr.indexOf(clickedIngredient), 1);
+    //         removeFilterButton(clickedIngredient);
+    //
+    //         galleryElement.innerHTML = '';
+    //         const filteredData = filterRecipes(val, recipes, arr);
+    //         renderRecipes(filteredData);
+    //         console.log(arr);
+    //     });
+    // })
+
 }
 App();
 
