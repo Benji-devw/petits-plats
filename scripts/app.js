@@ -1,5 +1,5 @@
 import recipes from "../data/recipes.js"
-import CardRecipe from "./CardRecipe.js";
+import displayRecipes from "./displayRecipes.js";
 
 
 
@@ -10,14 +10,14 @@ import CardRecipe from "./CardRecipe.js";
  * @param {array} data - All Data
  * @returns {array} - Data filtered
  **********************************/
-function filterRecipes(searchValue, data, selectedIngredients) {
-    return data.filter(recipe => {
-        if (recipe.name.toLowerCase().includes(searchValue) ||
-            recipe.description.toLowerCase().includes(searchValue)) {
+function filterRecipes(recipes, thermValue) {
+    return recipes.filter(recipe => {
+        if (recipe.name.toLowerCase().includes(thermValue) ||
+            recipe.description.toLowerCase().includes(thermValue)) {
             return true;
         } else {
             const findIngredient = recipe.ingredients.find(ingredient => {
-                return ingredient.ingredient.toLowerCase().includes(searchValue);
+                return ingredient.ingredient.toLowerCase().includes(thermValue);
             });
             return !!findIngredient;
         }
@@ -33,16 +33,35 @@ function filterRecipes(searchValue, data, selectedIngredients) {
 
 
 
-/**
- * @description Create li element
- * @param {string} item - Item of advanced filter
- * @param {Element} elem - Html element for inner
- **********************************/
+
 function createLiElement(item, elem) {
+    const tagsContainer = document.querySelector('.tags');
     const liElement = document.createElement('li');
     liElement.textContent = item;
+
+    let addedToTagsContainer = false;
+
+    liElement.addEventListener('click', event => {
+        if (!addedToTagsContainer) {
+            const liTags = document.createElement('span');
+            liTags.textContent = item;
+            tagsContainer.appendChild(liTags);
+            addedToTagsContainer = true;
+
+            liTags.addEventListener('click', () => {
+                tagsContainer.removeChild(liTags);
+                addedToTagsContainer = false;
+            });
+        }
+    });
+
     elem.appendChild(liElement);
 }
+
+
+
+
+
 
 
 
@@ -63,24 +82,24 @@ function advancedFilterBar(event, arr, elem) {
 
 
 
-function removeFilterButton(ingredient) {
-    const filterContainer = document.querySelector('.filter-container');
-    const filterButtons = filterContainer.querySelectorAll('li');
-    filterButtons.forEach(button => {
-        if (button.textContent === ingredient) {
-            filterContainer.removeChild(button);
-        }
-    });
-}
-function createFilterButton(ingredient) {
-    const filterContainer = document.querySelector('.filter-container');
-    const filterButton = document.createElement('li');
-    filterButton.textContent = ingredient;
-    filterButton.addEventListener('click', () => {
-        removeFilterButton(ingredient);
-    });
-    filterContainer.appendChild(filterButton);
-}
+// function removeFilterButton(ingredient) {
+//     const filterContainer = document.querySelector('.filter-container');
+//     const filterButtons = filterContainer.querySelectorAll('li');
+//     filterButtons.forEach(button => {
+//         if (button.textContent === ingredient) {
+//             filterContainer.removeChild(button);
+//         }
+//     });
+// }
+// function createFilterButton(ingredient) {
+//     const filterContainer = document.querySelector('.filter-container');
+//     const filterButton = document.createElement('li');
+//     filterButton.textContent = ingredient;
+//     filterButton.addEventListener('click', () => {
+//         removeFilterButton(ingredient);
+//     });
+//     filterContainer.appendChild(filterButton);
+// }
 
 
 
@@ -117,21 +136,6 @@ function filterBarIngredients(recipes) {
 
 
 
-function renderRecipes(recipes) {
-    document.querySelector('.filters-count-result span').innerHTML = `${recipes.length}`;
-        const galleryElement = document.querySelector('#gallery_section .gallery');
-
-    // const test = filterBarIngredients(recipes)
-
-    recipes.forEach(recipe => {
-        const cardHTML = CardRecipe(recipe);
-        // filterBarIngredients(recipes)
-        const cardElement = document.createElement('article');
-        cardElement.classList.add('card-container');
-        cardElement.innerHTML = cardHTML;
-        galleryElement.appendChild(cardElement);
-    });
-}
 
 
 
@@ -144,53 +148,21 @@ function App() {
     let data = recipes
     const galleryElement = document.querySelector('#gallery_section .gallery');
     const searchBar = document.querySelector('.search-bar .search');
-    let newData = []
-    renderRecipes(data)
-    // filterBarIngredients(newData.length <= 0 ? data : newData)
+
+    displayRecipes(data)
+    filterBarIngredients(data)
 
     searchBar.addEventListener('input', (event) => {
         if (event.target.value.length > 2) {
-            const filteredData = filterRecipes(event.target.value.toLowerCase(), data, []);
+            const filteredData = filterRecipes(data, event.target.value.toLowerCase());
             galleryElement.innerHTML = '';
-            renderRecipes(filteredData)
+            displayRecipes(filteredData)
+            filterBarIngredients(filteredData)
         } else {
             galleryElement.innerHTML = '';
-            renderRecipes(data)
+            displayRecipes(data)
         }
     })
-
-    // const ingredientsItems = document.querySelectorAll('.ingredients-filter li');
-    // const filterContainer = document.querySelectorAll('.filter-container li');
-    // const arr = []
-    // ingredientsItems.forEach(item => {
-    //     item.addEventListener('click', (event) => {
-    //         console.log(newData)
-    //
-    //         const clickedIngredient = event.target.textContent;
-    //         if (!arr.includes(clickedIngredient)) {
-    //             arr.push(clickedIngredient);
-    //             console.log(arr);
-    //             createFilterButton(clickedIngredient);
-    //         }
-    //         galleryElement.innerHTML = '';
-    //         const filteredData = filterRecipes(val, recipes, arr);
-    //         // console.log(filteredData)
-    //         renderRecipes(filteredData);
-    //     });
-    // });
-    // filterContainer.forEach(itemTest => {
-    //     itemTest.addEventListener('click', (event) => {
-    //         const clickedIngredient = event.target.textContent;
-    //         arr.splice(arr.indexOf(clickedIngredient), 1);
-    //         removeFilterButton(clickedIngredient);
-    //
-    //         galleryElement.innerHTML = '';
-    //         const filteredData = filterRecipes(val, recipes, arr);
-    //         renderRecipes(filteredData);
-    //         console.log(arr);
-    //     });
-    // })
-
 }
 App();
 
