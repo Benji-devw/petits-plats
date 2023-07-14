@@ -3,6 +3,7 @@ import CardRecipe from "./CardRecipe.js";
 export default function displayRecipes(recipes) {
     document.querySelector('.filters-count-result span').innerHTML = `${recipes.length}`;
     const galleryElement = document.querySelector('#gallery_section .gallery');
+    galleryElement.innerHTML = '';
 
     recipes.forEach(recipe => {
         const cardHTML = CardRecipe(recipe);
