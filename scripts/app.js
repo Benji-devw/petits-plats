@@ -3,9 +3,9 @@ import displayRecipes from "./utils/displayRecipes.js";
 
 
 /**
- * @param {string} searchValue - Search term
- * @param {array} data - All Data
- * @returns {array} - Data filtered
+ * @param {string} termValue
+ * @param {array} recipes
+ * @returns {array} - Recipes filtered
  **********************************/
 function filterRecipesBySearch(recipes, termValue) {
     return recipes.filter(recipe => {
@@ -37,8 +37,8 @@ function displayIngredients(recipes) {
     })
 }
 
-// Create displayUstensil
-// Create displayApperiels
+// Create displayUtensils
+// Create displayAppliances
 // Create displayTag
 // Create AddEvent
 
@@ -49,12 +49,14 @@ function displayIngredients(recipes) {
 function App() {
     const data = recipes
     const searchBar = document.querySelector('.search-bar .search');
-    const tagsContainer = document.querySelector('.tags');
+    // const tagsContainer = document.querySelector('.tags');
 
     let newData= [...data]
 
     displayRecipes(data)
     displayIngredients(data)
+    // displayUtensils(data)
+    // displayAppliances(data)
 
     searchBar.addEventListener('input', (event) => {
         if (event.target.value.length > 2) {
@@ -64,15 +66,13 @@ function App() {
         }
         displayRecipes(newData)
         displayIngredients(newData)
-        // displayUstensil(newData)
-        // displayApperiels(newData)
+        // displayUtensils(newData)
+        // displayAppliances(newData)
     })
 
     // searchBarIngredients.addEventListener('input', (event) => {})
     // displayIngredients(newData, event.target.value.toLowerCase())
     // tagsContainer.innerHTML = '';
-
-
 }
 
 App();
