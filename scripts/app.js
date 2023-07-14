@@ -28,18 +28,40 @@ function createLiElement(item) {
 }
 
 function displayIngredients(recipes) {
-    const ingredientsFilter = document.querySelector('.ingredients-filter');
-    ingredientsFilter.innerHTML = '';
-    recipes.forEach(recipe => {
-        const ingredientLower = recipe.ingredients.map(arr => arr.ingredient.toLowerCase());
-        const itemElement = createLiElement(ingredientLower)
-        ingredientsFilter.appendChild(itemElement)
-    })
+    const ingredientsContainer = document.querySelector('.ingredients-container');
+    ingredientsContainer.innerHTML = '';
+
+    const uniqueIngredients = [...new Set(recipes.flatMap(recipe => recipe.ingredients.map(ingredient => ingredient.ingredient.toLowerCase())))];
+    uniqueIngredients.forEach(ingredient => {
+        const itemElement = createLiElement(ingredient);
+        ingredientsContainer.appendChild(itemElement);
+    });
 }
 
-// Create displayUtensils
-// Create displayAppliances
-// Create displayTag
+function displayAppliances(recipes) {
+    const appliancesContainer = document.querySelector('.appliances-container');
+    appliancesContainer.innerHTML = '';
+
+    const uniqueUtensils = [...new Set(recipes.flatMap(recipe => recipe.appliance.toLowerCase()))];
+    uniqueUtensils.forEach(utensil => {
+        const itemElement = createLiElement(utensil);
+        appliancesContainer.appendChild(itemElement);
+    });
+}
+
+function displayUtensils(recipes) {
+    const utensilsContainer = document.querySelector('.utensils-container');
+    utensilsContainer.innerHTML = '';
+
+    const uniqueUtensils = [...new Set(recipes.flatMap(recipe => recipe.ustensils.map(utensil => utensil.toLowerCase())))];
+    uniqueUtensils.forEach(utensil => {
+        const itemElement = createLiElement(utensil);
+        utensilsContainer.appendChild(itemElement);
+    });
+}
+
+
+
 // Create AddEvent
 
 /**
@@ -55,19 +77,19 @@ function App() {
 
     displayRecipes(data)
     displayIngredients(data)
-    // displayUtensils(data)
-    // displayAppliances(data)
+    displayAppliances(data)
+    displayUtensils(data)
 
     searchBar.addEventListener('input', (event) => {
         if (event.target.value.length > 2) {
             newData = filterRecipesBySearch(data, event.target.value.toLowerCase());
         } else {
-            newData= [...data]
+            newData = [...data]
         }
         displayRecipes(newData)
         displayIngredients(newData)
-        // displayUtensils(newData)
-        // displayAppliances(newData)
+        displayAppliances(newData)
+        displayUtensils(newData)
     })
 
     // searchBarIngredients.addEventListener('input', (event) => {})
