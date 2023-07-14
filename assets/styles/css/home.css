@@ -64,7 +64,6 @@ header .header_content {
   width: 100%;
   background-image: url("../../bg-header.jpg");
   background-repeat: no-repeat;
-  background-position: center;
   background-size: cover;
   display: flex;
   flex-direction: column;
@@ -151,8 +150,14 @@ main #filters_section .filter-item i {
   top: 20px;
   color: #7A7A7A;
 }
-main #tags {
-  min-height: 50px;
+main .tags {
+  min-height: 60px;
+  width: 100%;
+}
+main .tags .tag-element {
+  background-color: #fff;
+  border-radius: 20px;
+  cursor: pointer;
 }
 main #gallery_section {
   min-height: 30vh;

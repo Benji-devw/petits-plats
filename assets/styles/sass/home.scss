@@ -15,7 +15,7 @@ header {
     width: 100%;
     background-image: url("../../bg-header.jpg");
     background-repeat: no-repeat;
-    background-position: center;
+    //background-position: center;
     background-size: cover;
 
     @include flex-col;
@@ -118,8 +118,14 @@ main {
   }
 
 
-  #tags {
-    min-height: 50px;
+  & .tags {
+    min-height: 60px;
+    width: 100%;
+    & .tag-element {
+      background-color: #fff;
+      border-radius: 20px;
+      cursor: pointer;
+    }
   }
 
 

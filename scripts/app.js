@@ -21,9 +21,21 @@ function filterRecipesBySearch(recipes, termValue) {
     })
 }
 
-function createLiElement(item) {
+function createTag(item) {
+    const tagsWrapper = document.querySelector('.tags')
+
+    const tag = document.createElement('span');
+    tag.classList.add('tag-element', 'px-4', 'py-2', 'm-2')
+    tag.textContent = item;
+    tagsWrapper.appendChild(tag)
+}
+
+function createLiElement(item, category) {
     const liElement = document.createElement('li');
     liElement.textContent = item;
+    liElement.addEventListener('click', () => {
+        createTag(item)
+    })
     return liElement
 }
 
@@ -33,7 +45,7 @@ function displayIngredients(recipes) {
 
     const uniqueIngredients = [...new Set(recipes.flatMap(recipe => recipe.ingredients.map(ingredient => ingredient.ingredient.toLowerCase())))];
     uniqueIngredients.forEach(ingredient => {
-        const itemElement = createLiElement(ingredient);
+        const itemElement = createLiElement(ingredient, 'ingredient');
         ingredientsContainer.appendChild(itemElement);
     });
 }
@@ -42,9 +54,9 @@ function displayAppliances(recipes) {
     const appliancesContainer = document.querySelector('.appliances-container');
     appliancesContainer.innerHTML = '';
 
-    const uniqueUtensils = [...new Set(recipes.flatMap(recipe => recipe.appliance.toLowerCase()))];
-    uniqueUtensils.forEach(utensil => {
-        const itemElement = createLiElement(utensil);
+    const uniqueAppliances = [...new Set(recipes.flatMap(recipe => recipe.appliance.toLowerCase()))];
+    uniqueAppliances.forEach(appliance => {
+        const itemElement = createLiElement(appliance, 'appliance');
         appliancesContainer.appendChild(itemElement);
     });
 }
@@ -55,7 +67,7 @@ function displayUtensils(recipes) {
 
     const uniqueUtensils = [...new Set(recipes.flatMap(recipe => recipe.ustensils.map(utensil => utensil.toLowerCase())))];
     uniqueUtensils.forEach(utensil => {
-        const itemElement = createLiElement(utensil);
+        const itemElement = createLiElement(utensil, 'utensil');
         utensilsContainer.appendChild(itemElement);
     });
 }
@@ -72,6 +84,8 @@ function App() {
     const data = recipes
     const searchBar = document.querySelector('.search-bar .search');
     // const tagsContainer = document.querySelector('.tags');
+    // const tagsElement = document.querySelectorAll('.tag-element')
+
 
     let newData= [...data]
 
