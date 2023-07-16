@@ -23,14 +23,15 @@ function filterRecipesBySearch(recipes, termValue) {
 
 function createTag(item) {
     const tagsWrapper = document.querySelector('.tags')
-
     const tag = document.createElement('span');
+
     tag.classList.add('tag-element', 'px-4', 'py-2', 'm-2')
     tag.textContent = item;
     tagsWrapper.appendChild(tag)
 }
 
 function createLiElement(item) {
+    const tagsElement = document.querySelectorAll('.tag-element')
     const liElement = document.createElement('li');
     liElement.textContent = item;
     liElement.addEventListener('click', () => {
@@ -73,6 +74,24 @@ function displayUtensils(recipes) {
 }
 
 
+function ingredientFiltered(arr, searchTerm) {
+    const ingredientsContainer = document.querySelector('.ingredients-container');
+    ingredientsContainer.innerHTML = '';
+    let ingredientsArray = [];
+    arr.forEach(recipe => {
+        recipe.ingredients.forEach(ingredient => {
+            if (!ingredientsArray.includes(ingredient.ingredient.toLowerCase())) {
+                ingredientsArray.push(ingredient.ingredient.toLowerCase());
+            }
+        });
+    });
+    return ingredientsArray.forEach(item => {
+        if (item.toLowerCase().includes(searchTerm)) {
+            return ingredientsContainer.appendChild(createLiElement(item))
+        }
+    });
+}
+
 
 
 /**
@@ -83,7 +102,7 @@ function App() {
     const data = recipes
     const searchBar = document.querySelector('.search-bar .search');
     const searchBarIngredients = document.querySelector('.search-ingredients')
-    // const tagsContainer = document.querySelector('.tags');
+    // const tagsWrapper = document.querySelector('.tags');
     // const tagsElement = document.querySelectorAll('.tag-element')
 
     let newData= [...data]
@@ -103,22 +122,10 @@ function App() {
         displayUtensils(newData)
     })
 
-
     searchBarIngredients.addEventListener('input', (event) => {
-        const ingredientsContainer = document.querySelector('.ingredients-container');
-        const ingredientsContainerItem = document.querySelectorAll('.ingredients-container li');
-        ingredientsContainer.innerHTML = ''
-
-        ingredientsContainerItem.forEach(item => {
-            if (item.textContent.toLowerCase().includes(event.target.value.toLowerCase())) {
-                const itemElement = createLiElement(item.textContent);
-                ingredientsContainer.appendChild(itemElement);
-            }
-        });
-
+        ingredientFiltered(newData, event.target.value.toLowerCase() )
     });
-    // displayIngredients(newData, event.target.value.toLowerCase())
+
     // tagsContainer.innerHTML = '';
 }
-
 App();
