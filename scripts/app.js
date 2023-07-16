@@ -30,7 +30,7 @@ function createTag(item) {
     tagsWrapper.appendChild(tag)
 }
 
-function createLiElement(item, category) {
+function createLiElement(item) {
     const liElement = document.createElement('li');
     liElement.textContent = item;
     liElement.addEventListener('click', () => {
@@ -45,7 +45,7 @@ function displayIngredients(recipes) {
 
     const uniqueIngredients = [...new Set(recipes.flatMap(recipe => recipe.ingredients.map(ingredient => ingredient.ingredient.toLowerCase())))];
     uniqueIngredients.forEach(ingredient => {
-        const itemElement = createLiElement(ingredient, 'ingredient');
+        const itemElement = createLiElement(ingredient);
         ingredientsContainer.appendChild(itemElement);
     });
 }
@@ -56,7 +56,7 @@ function displayAppliances(recipes) {
 
     const uniqueAppliances = [...new Set(recipes.flatMap(recipe => recipe.appliance.toLowerCase()))];
     uniqueAppliances.forEach(appliance => {
-        const itemElement = createLiElement(appliance, 'appliance');
+        const itemElement = createLiElement(appliance);
         appliancesContainer.appendChild(itemElement);
     });
 }
@@ -67,14 +67,13 @@ function displayUtensils(recipes) {
 
     const uniqueUtensils = [...new Set(recipes.flatMap(recipe => recipe.ustensils.map(utensil => utensil.toLowerCase())))];
     uniqueUtensils.forEach(utensil => {
-        const itemElement = createLiElement(utensil, 'utensil');
+        const itemElement = createLiElement(utensil);
         utensilsContainer.appendChild(itemElement);
     });
 }
 
 
 
-// Create AddEvent
 
 /**
  * @description Main function
@@ -83,9 +82,9 @@ function displayUtensils(recipes) {
 function App() {
     const data = recipes
     const searchBar = document.querySelector('.search-bar .search');
+    const searchBarIngredients = document.querySelector('.search-ingredients')
     // const tagsContainer = document.querySelector('.tags');
     // const tagsElement = document.querySelectorAll('.tag-element')
-
 
     let newData= [...data]
 
@@ -95,18 +94,29 @@ function App() {
     displayUtensils(data)
 
     searchBar.addEventListener('input', (event) => {
-        if (event.target.value.length > 2) {
-            newData = filterRecipesBySearch(data, event.target.value.toLowerCase());
-        } else {
-            newData = [...data]
-        }
+        if (event.target.value.length > 2) newData = filterRecipesBySearch(data, event.target.value.toLowerCase());
+        else newData = [...data]
+
         displayRecipes(newData)
         displayIngredients(newData)
         displayAppliances(newData)
         displayUtensils(newData)
     })
 
-    // searchBarIngredients.addEventListener('input', (event) => {})
+
+    searchBarIngredients.addEventListener('input', (event) => {
+        const ingredientsContainer = document.querySelector('.ingredients-container');
+        const ingredientsContainerItem = document.querySelectorAll('.ingredients-container li');
+        ingredientsContainer.innerHTML = ''
+
+        ingredientsContainerItem.forEach(item => {
+            if (item.textContent.toLowerCase().includes(event.target.value.toLowerCase())) {
+                const itemElement = createLiElement(item.textContent);
+                ingredientsContainer.appendChild(itemElement);
+            }
+        });
+
+    });
     // displayIngredients(newData, event.target.value.toLowerCase())
     // tagsContainer.innerHTML = '';
 }
