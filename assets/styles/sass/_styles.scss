@@ -50,6 +50,16 @@ label {
   box-shadow: 0 0 0 1px white, 0 0 0 3px #FFD15B;
 }
 
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  z-index: 48;
+}
+
 // TODO: rename
 .test {
   background-color: $color-yellow;

@@ -11,9 +11,6 @@ function tagElement(item) {
 
       tag.addEventListener('click', () => {
           tag.remove()
-          // add li to list
-          // createLiElement(item, type)
-          
       });
       
       tagsWrapper.appendChild(tag);
@@ -21,12 +18,12 @@ function tagElement(item) {
 }
 
 
-export function createTag(item, type) {
+export function createTag(item) {
   const liElement = document.createElement('li');
   liElement.textContent = item;
   liElement.classList.add('item')
 
-  tagElement(item, type)
+  tagElement(item)
   
   return liElement
 }

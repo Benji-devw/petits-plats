@@ -1,3 +1,4 @@
+@charset "UTF-8";
 * {
   margin: 0;
   padding: 0;
@@ -48,6 +49,16 @@ label {
 :is(input, div, button, a, select, img, video, i):focus {
   outline: none;
   box-shadow: 0 0 0 1px white, 0 0 0 3px #FFD15B;
+}
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  z-index: 48;
 }
 
 .test {
@@ -113,13 +124,34 @@ main {
   min-height: 100vh;
   background: #ededed;
 }
+main #filters_section .filters-accordion .search-tag {
+  position: static;
+  top: 0;
+  background-color: #fff; /* Facultatif, pour ajouter un fond blanc */
+  z-index: 100; /* Facultatif, pour contrôler l'empilement d'éléments */
+}
+main #filters_section .filters-accordion .search-tag .search-ingredients,
+main #filters_section .filters-accordion .search-tag .search-appliances,
+main #filters_section .filters-accordion .search-tag .search-ustensils {
+  /* Vous pouvez continuer de spécifier d'autres styles si nécessaire */
+  position: relative; /* Revenez à la position relative ou à la valeur par défaut */
+}
 main #filters_section .filters-accordion .accordion {
   position: relative;
+}
+main #filters_section .filters-accordion .accordion .accordion-button {
+  z-index: 50;
 }
 main #filters_section .filters-accordion .accordion .accordion-collapse {
   position: absolute;
   background-color: #fff !important;
   z-index: 50;
+}
+main #filters_section .filters-accordion .accordion .accordion-collapse .ingredients-container,
+main #filters_section .filters-accordion .accordion .accordion-collapse .appliances-container,
+main #filters_section .filters-accordion .accordion .accordion-collapse .ustensils-container {
+  max-height: 400px;
+  overflow-y: scroll;
 }
 main #filters_section .filters-accordion .filters-count-result {
   font-weight: bold;

@@ -60,12 +60,39 @@ main {
 
    #filters_section {
     .filters-accordion {
+
+      .search-tag {
+        position: static;
+        top: 0;
+        background-color: #fff; /* Facultatif, pour ajouter un fond blanc */
+        z-index: 100; /* Facultatif, pour contrôler l'empilement d'éléments */
+        
+        .search-ingredients,
+        .search-appliances,
+        .search-ustensils {
+          /* Vous pouvez continuer de spécifier d'autres styles si nécessaire */
+          position: relative; /* Revenez à la position relative ou à la valeur par défaut */
+        }
+      }
+      
+
       .accordion {
         position: relative;
+        .accordion-button {
+          z-index: 50;
+        }
         .accordion-collapse {
           position: absolute;
           background-color: #fff !important;
           z-index: 50;
+
+          .ingredients-container,
+          .appliances-container,
+          .ustensils-container {
+            max-height: 400px;
+            overflow-y: scroll;
+
+          }
         }
       }
       .filters-count-result {
