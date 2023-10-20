@@ -54,6 +54,12 @@ label {
   background-color: #FFD15B;
 }
 
+.ddd {
+  pointer-events: none;
+  color: red;
+  text-decoration: line-through;
+}
+
 .filter-container li {
   width: 150px;
   border: 1px solid black;
@@ -162,6 +168,9 @@ main .tags .tag-element {
   background-color: #fff;
   border-radius: 20px;
   cursor: pointer;
+}
+main .tags .tag-element:hover {
+  background-color: #FFD15B;
 }
 main #gallery_section {
   min-height: 30vh;

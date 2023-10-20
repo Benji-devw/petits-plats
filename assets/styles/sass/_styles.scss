@@ -50,6 +50,13 @@ label {
   box-shadow: 0 0 0 1px white, 0 0 0 3px #FFD15B;
 }
 
+// TODO: rename
 .test {
   background-color: $color-yellow;
+}
+
+.ddd {
+  pointer-events: none;
+  color: red;
+  text-decoration: line-through;
 }

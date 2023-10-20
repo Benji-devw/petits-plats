@@ -1,7 +1,7 @@
 import recipes from "../data/recipes.js"
 import displayRecipes from "./utils/displayRecipes.js";
-import { displayIngredients, displayAppliances, displayUtensils } from "./utils/tags_Display.js";
-import { createLiElement } from "./utils/tags_create.js";
+import { displayListIngredients, displayAppliances, displayUtensils } from "./utils/tagsList_Display.js";
+import { createTag } from "./utils/tags_create.js";
 
 
 
@@ -20,41 +20,19 @@ function filterRecipesBySearch(recipes, termValue) {
     })
 }
 
-
-
-
-
-/**
- * @description Filter ingredients by search term
- * @param {array} recipes - Recipes
- * @param {string} searchTerm - Search term
- * @returns Filtered ingredients
- */
-function filterIngredientsBySearch(recipes, searchTerm) {
-    const ingredientsContainer = document.querySelector('.ingredients-container');
-    // clear ingredients container
-    ingredientsContainer.innerHTML = '';
-
-    // get all ingredients from recipes and display unique ingredients
-    const uniqueIngredients = [...new Set(recipes.flatMap(recipe => recipe.ingredients.map(ingredient => ingredient.ingredient.toLowerCase())))];
-    // filter ingredients by search term
-    const filteredIngredients = uniqueIngredients.filter(ingredient => ingredient.includes(searchTerm));
-    // display list of ingredients
-    filteredIngredients.forEach(ingredient => {
-        const itemElement = createLiElement(ingredient, "ingredient");
-        ingredientsContainer.appendChild(itemElement);
-    });
-}
-
-
-function filterRecipesByTags(recipes, termValue) {
+function filterRecipesByTags(recipes, tags) {
     return recipes.filter(recipe => {
-         const findIngredient = recipe.ingredients.find(ingredient => {
-             return ingredient.ingredient.toLowerCase().includes(termValue);
-         });
-         return !!findIngredient;
+        return tags.every(tag => {
+            const foundIngredient = recipe.ingredients.find(ingredient => {
+                return ingredient.ingredient.toLowerCase().includes(tag);
+            });
+            return !!foundIngredient;
+        });
     });
 }
+
+
+
 
 
 /**
@@ -62,56 +40,72 @@ function filterRecipesByTags(recipes, termValue) {
  * @returns All Cards for gallery
  **********************************/
 function App() {
-    const data = recipes
+    const data = recipes;
     const searchBar = document.querySelector('.search-bar .search');
-
-    const searchBarIngredients = document.querySelector('.search-ingredients')
-    const ingredientLiElement = document.querySelectorAll('.ingredients-container li')
-
+    const listOfIngredients = document.querySelector('.ingredients-container');
     const tagsWrapper = document.querySelector('.tags');
-    // const tagsElement = document.querySelectorAll('.tag-element')
 
-    let newData = [...data]
-    let newTag = []
+    let newData = [...data];
+    let newTag = [];
+    let searchValue = '';
 
-    displayRecipes(data)
-    displayIngredients(data)
-    displayAppliances(data)
-    displayUtensils(data)
+    displayRecipes(newData);
+    displayListIngredients(newData);
 
-    ingredientLiElement.forEach(element => {
-        element.addEventListener('click', () => {
-            // test(recipes, element.textContent)
-            newTag.push(element.textContent)
-            newData = filterRecipesByTags(newData, newTag)
-            displayRecipes(newData)
-            displayIngredients(newData)
-            displayAppliances(newData)
-            displayUtensils(newData)
-            console.log(newTag);
-        })
-    })
 
-    searchBarIngredients.addEventListener('input', (event) => {
-        filterIngredientsBySearch(newData, event.target.value.toLowerCase())
-        // if click on tag
-        newData = filterRecipesByTags(newData, event.target.value.toLowerCase());
+    //** Filter by tag and update data */
+    tagsWrapper.addEventListener('click', (event) => {
+        console.log(event.target);
+        if (event.target.tagName !== 'SPAN') return;        // Check if tag is clicked and not the container
+        
+        const item = event.target.textContent;              // Get tag name
+        newTag = newTag.filter(tag => tag !== item);        // Remove tag from array
+        
+        if (searchValue.length > 2) {
+            newData = filterRecipesBySearch(data, searchValue.toLowerCase());        // Filter by saearch value if active
+        } else {
+            newData = filterRecipesByTags(data, newTag);     // Filter by tags if no search value
+        }
 
-        // filterRecipesByTags(newData)
-
+        displayRecipes(newData);
+        displayListIngredients(newData);
     });
 
+
+    //** Display list of ingredients */
+    listOfIngredients.addEventListener('click', (event) => {
+        const item = event.target.textContent;
+        createTag(item, "ingredient");
+
+        newTag.push(item);      // Add tag to array
+        newData = filterRecipesByTags(newData, newTag);     // Filter by tags
+
+        displayRecipes(newData);
+        displayListIngredients(newData);
+    });
+
+
+    //** Filter by search bar */
     searchBar.addEventListener('input', (event) => {
-        if (event.target.value.length > 2) newData = filterRecipesBySearch(data, event.target.value.toLowerCase());
-        else newData = [...data]
+        searchValue = event.target.value.toLowerCase();
 
-        displayRecipes(newData)
-        displayIngredients(newData)
-        displayAppliances(newData)
-        displayUtensils(newData)
-        filterRecipesByTags(newData)
-    })
+        if (event.target.value.length > 2) {
+            newData = filterRecipesBySearch(data, event.target.value.toLowerCase());
+        } 
+        // else if (newTag.length > 0) {
+        //     newData = filterRecipesBySearch(filterRecipesByTags(data, newTag), event.target.value.toLowerCase());
+        // } 
+        else {
+            newData = [...data];
+        }
 
+        
+        newData = filterRecipesByTags(newData, newTag)
 
+        displayRecipes(newData);
+        displayListIngredients(newData);
+    });
+    
 }
+
 App();

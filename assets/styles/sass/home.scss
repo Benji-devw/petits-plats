@@ -125,6 +125,9 @@ main {
       background-color: #fff;
       border-radius: 20px;
       cursor: pointer;
+      &:hover {
+        background-color: $color-yellow;
+      }
     }
   }
 
