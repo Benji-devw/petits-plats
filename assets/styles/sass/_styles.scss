@@ -65,8 +65,6 @@ label {
   background-color: $color-yellow;
 }
 
-.ddd {
-  pointer-events: none;
-  color: red;
-  text-decoration: line-through;
+.hidden {
+  display: none;
 }

@@ -1,16 +1,20 @@
 
-export function displayListIngredients(recipes) {
+export function displayListIngredients(recipes, newTag) {
     const ingredientsContainer = document.querySelector('.ingredients-container');
+    
     ingredientsContainer.innerHTML = '';
 
     //TODO: add comments
     const uniqueIngredients = [...new Set(recipes.flatMap(recipe => recipe.ingredients.map(ingredient => ingredient.ingredient.toLowerCase())))];
-    uniqueIngredients.forEach(ingredient => {
 
-        const liElement = document.createElement('li');
-        liElement.textContent = ingredient;
-        liElement.classList.add('item')
-        ingredientsContainer.appendChild(liElement);
+    uniqueIngredients.forEach(ingredient => {
+        const foundTag = newTag.find(tag => tag === ingredient);
+        if (!foundTag) {
+            const liElement = document.createElement('li');
+            liElement.textContent = ingredient;
+            liElement.classList.add('item')
+            ingredientsContainer.appendChild(liElement);
+        }
     });
 }
 

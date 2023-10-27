@@ -6,11 +6,11 @@ import { createTag } from "./tags/tags_create.js";
 
 
 
-// TODO: add comments
+// TODO: change method for compare performance
 function filterRecipesBySearch(recipes, termValue) {
     // Filter for callback function
     return recipes.filter(recipe => {
-        console.log(recipe);
+        // console.log(recipe);
         // Check if recipe name or description contains search value
         if (recipe.name.toLowerCase().includes(termValue) ||
             recipe.description.toLowerCase().includes(termValue)) {
@@ -60,13 +60,14 @@ function App() {
     let newData = [...data];
     let newTag = [];
     let searchValue = '';
-
     displayRecipes(newData);
-    displayListIngredients(newData);
+    displayListIngredients(newData, newTag);
     displayListAppliances(newData);
     displayListUtensils(newData);
 
     searchIngredients.addEventListener('input', (event) => {
+
+        // TODO: add querySelector prametre
         filterTagsListIngredient(event, newData);
     });
     searchAppliances.addEventListener('input', (event) => {
@@ -75,6 +76,7 @@ function App() {
     searchUstensils.addEventListener('input', (event) => {
         filterTagsListUstensils(event, newData);
     });
+
 
     //** Remove tag and update recipes */
     tagsWrapper.addEventListener('click', (event) => {
@@ -88,17 +90,16 @@ function App() {
             : newData = filterRecipesByTags(data, newTag);      // Filter by tags if no search value
         
         displayRecipes(newData);
-        displayListIngredients(newData);
+        displayListIngredients(newData, newTag);
         displayListAppliances(newData);
         displayListUtensils(newData);
     });
 
 
-    // Créez un seul gestionnaire d'événements pour les ingrédients et les appareils
+    //** Event for filter by tags */
     listOfIngredients.addEventListener('click', handleFilterClick);
     listOfAppliances.addEventListener('click', handleFilterClick);
     listOfUtensils.addEventListener('click', handleFilterClick);
-
     function handleFilterClick(event) {
         const item = event.target.textContent;
         createTag(item);
@@ -108,11 +109,10 @@ function App() {
         newData = filterRecipesByTags(newData, newTag);     // Filter by tags
 
         displayRecipes(newData);
-        displayListIngredients(newData);
+        displayListIngredients(newData, newTag);
         displayListAppliances(newData);
         displayListUtensils(newData);
     }
-
 
 
     //** Filter by search bar */
@@ -126,7 +126,7 @@ function App() {
         newData = filterRecipesByTags(newData, newTag)
 
         displayRecipes(newData);
-        displayListIngredients(newData);
+        displayListIngredients(newData, newTag);
         displayListAppliances(newData);
         displayListUtensils(newData);
     });

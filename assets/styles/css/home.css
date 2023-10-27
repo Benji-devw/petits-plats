@@ -65,10 +65,8 @@ label {
   background-color: #FFD15B;
 }
 
-.ddd {
-  pointer-events: none;
-  color: red;
-  text-decoration: line-through;
+.hidden {
+  display: none;
 }
 
 .filter-container li {
