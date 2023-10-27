@@ -8,15 +8,19 @@ import { createTag } from "./tags/tags_create.js";
 
 // TODO: add comments
 function filterRecipesBySearch(recipes, termValue) {
+    // Filter for callback function
     return recipes.filter(recipe => {
+        console.log(recipe);
+        // Check if recipe name or description contains search value
         if (recipe.name.toLowerCase().includes(termValue) ||
             recipe.description.toLowerCase().includes(termValue)) {
             return true;
         } else {
+            // Check if ingredient is in recipe
             const findIngredient = recipe.ingredients.find(ingredient => {
                 return ingredient.ingredient.toLowerCase().includes(termValue);
             });
-            return !!findIngredient;
+            return !!findIngredient;        // !! => convert to boolean
         }
     })
 }
