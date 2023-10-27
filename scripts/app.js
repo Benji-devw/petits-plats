@@ -1,8 +1,8 @@
 import recipes from "../data/recipes.js"
 import displayRecipes from "./displayRecipes.js";
-import { displayListIngredients, displayListAppliances, displayListUtensils } from "./tags/tagsList_Display.js";
-import { filterTagsListIngredient, filterTagsListAppliance, filterTagsListUstensils } from "./tags/tagsList_Filter.js";
-import { createTag } from "./tags/tags_create.js";
+import { displayTagsList } from "./tags/tagsList_Display.js";
+import { searchTagsList } from "./tags/tagsList_Filter.js";
+import { createTag } from "./tags/tagItem.js";
 
 
 
@@ -61,20 +61,18 @@ function App() {
     let newTag = [];
     let searchValue = '';
     displayRecipes(newData);
-    displayListIngredients(newData, newTag);
-    displayListAppliances(newData);
-    displayListUtensils(newData);
+    displayTagsList(newData, newTag, 'ingredients');
+    displayTagsList(newData, newTag, 'appliances');
+    displayTagsList(newData, newTag, 'ustensils');
 
     searchIngredients.addEventListener('input', (event) => {
-
-        // TODO: add querySelector prametre
-        filterTagsListIngredient(event, newData);
+        searchTagsList(event, newData, 'ingredients');
     });
     searchAppliances.addEventListener('input', (event) => {
-        filterTagsListAppliance(event, newData);
+        searchTagsList(event, newData, 'appliances');
     });
     searchUstensils.addEventListener('input', (event) => {
-        filterTagsListUstensils(event, newData);
+        searchTagsList(event, newData, 'ustensils');
     });
 
 
@@ -90,9 +88,9 @@ function App() {
             : newData = filterRecipesByTags(data, newTag);      // Filter by tags if no search value
         
         displayRecipes(newData);
-        displayListIngredients(newData, newTag);
-        displayListAppliances(newData);
-        displayListUtensils(newData);
+        displayTagsList(newData, newTag, 'ingredients');
+        displayTagsList(newData, newTag, 'appliances');
+        displayTagsList(newData, newTag, 'ustensils');
     });
 
 
@@ -109,9 +107,9 @@ function App() {
         newData = filterRecipesByTags(newData, newTag);     // Filter by tags
 
         displayRecipes(newData);
-        displayListIngredients(newData, newTag);
-        displayListAppliances(newData);
-        displayListUtensils(newData);
+        displayTagsList(newData, newTag, 'ingredients');
+        displayTagsList(newData, newTag, 'appliances');
+        displayTagsList(newData, newTag, 'ustensils');
     }
 
 
@@ -126,9 +124,9 @@ function App() {
         newData = filterRecipesByTags(newData, newTag)
 
         displayRecipes(newData);
-        displayListIngredients(newData, newTag);
-        displayListAppliances(newData);
-        displayListUtensils(newData);
+        displayTagsList(newData, newTag, 'ingredients');
+        displayTagsList(newData, newTag, 'appliances');
+        displayTagsList(newData, newTag, 'ustensils');
     });
     
 }

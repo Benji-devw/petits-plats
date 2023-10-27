@@ -1,5 +1,5 @@
 
-function tagElement(item) {
+function displayTag(item) {
   const tagsWrapper = document.querySelector('.tags');
   const existingTag = tagsWrapper.querySelector(`span.tag-element[data-tag="${item}"]`);
 
@@ -23,7 +23,7 @@ export function createTag(item) {
   liElement.textContent = item;
   liElement.classList.add('item')
 
-  tagElement(item)
+  displayTag(item)
   
   return liElement
 }

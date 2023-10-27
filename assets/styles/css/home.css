@@ -61,14 +61,6 @@ label {
   z-index: 48;
 }
 
-.test {
-  background-color: #FFD15B;
-}
-
-.hidden {
-  display: none;
-}
-
 .filter-container li {
   width: 150px;
   border: 1px solid black;
