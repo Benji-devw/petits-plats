@@ -197,6 +197,7 @@ main #gallery_section .card-container {
   max-width: 380px;
 }
 main #gallery_section .card-container .card {
+  height: 100%;
   border-radius: 20px;
   overflow: hidden;
 }
