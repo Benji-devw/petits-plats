@@ -1,15 +1,15 @@
 @import './components/_variables';
 @import './_styles';
 
-.filter-container li {
-  width: 150px;
-  border: 1px solid black;
-  margin: 1rem;
-}
 
 header {
   height: 60vh;
 
+  .logo {
+    position: absolute;
+    top: 3rem;
+    left: 3rem;
+  }
   .header_content {
     height: 100%;
     width: 100%;
@@ -22,6 +22,7 @@ header {
     justify-content: center;
 
     h1 {
+      text-align: center;
       max-width: 60%;
       margin-bottom: 2rem;
     }
@@ -64,23 +65,21 @@ main {
       .search-tag {
         position: static;
         top: 0;
-        background-color: #fff; /* Facultatif, pour ajouter un fond blanc */
-        z-index: 100; /* Facultatif, pour contrôler l'empilement d'éléments */
+        background-color: #fff;
+        z-index: 100;
         
         .search-ingredients,
         .search-appliances,
         .search-ustensils {
-          /* Vous pouvez continuer de spécifier d'autres styles si nécessaire */
-          position: relative; /* Revenez à la position relative ou à la valeur par défaut */
+          position: relative;
         }
       }
       
-
       .accordion {
         position: relative;
-        .accordion-button {
-          z-index: 50;
-        }
+        // .accordion-button {
+        //   z-index: 50;
+        // }
         .accordion-collapse {
           position: absolute;
           background-color: #fff !important;
@@ -97,6 +96,7 @@ main {
       }
       .filters-count-result {
         font-weight: bold;
+        text-align: right;
       }
     }
 
@@ -109,23 +109,24 @@ main {
         box-shadow: none !important;
          &:focus {
           border: 2px solid $color-yellow;
+          // border-radius: 5px 5px 0 0;
          }
       }
+      // & .accordion-body {
+      //   position: relative;
+      // }
+      
 
-       & .search-ingredients-container {
-         //margin: 0 .5rem;
-       }
-
-       & ul {
-         position: relative;
-         padding: 0;
-         & li {
-           padding: .4rem .7rem;
-           &:hover {
-             background-color: $color-yellow;
-             cursor: pointer;
-           }
-         }
+      & ul {
+        position: relative;
+        padding: 0;
+        & li {
+          padding: .4rem .7rem;
+          &:hover {
+            background-color: $color-yellow;
+            cursor: pointer;
+          }
+        }
        }
        & input {
          border: 1px solid $color-grey-bis;

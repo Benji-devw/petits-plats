@@ -1,4 +1,3 @@
-@charset "UTF-8";
 * {
   margin: 0;
   padding: 0;
@@ -61,14 +60,13 @@ label {
   z-index: 48;
 }
 
-.filter-container li {
-  width: 150px;
-  border: 1px solid black;
-  margin: 1rem;
-}
-
 header {
   height: 60vh;
+}
+header .logo {
+  position: absolute;
+  top: 3rem;
+  left: 3rem;
 }
 header .header_content {
   height: 100%;
@@ -82,6 +80,7 @@ header .header_content {
   justify-content: center;
 }
 header .header_content h1 {
+  text-align: center;
   max-width: 60%;
   margin-bottom: 2rem;
 }
@@ -117,20 +116,16 @@ main {
 main #filters_section .filters-accordion .search-tag {
   position: static;
   top: 0;
-  background-color: #fff; /* Facultatif, pour ajouter un fond blanc */
-  z-index: 100; /* Facultatif, pour contrôler l'empilement d'éléments */
+  background-color: #fff;
+  z-index: 100;
 }
 main #filters_section .filters-accordion .search-tag .search-ingredients,
 main #filters_section .filters-accordion .search-tag .search-appliances,
 main #filters_section .filters-accordion .search-tag .search-ustensils {
-  /* Vous pouvez continuer de spécifier d'autres styles si nécessaire */
-  position: relative; /* Revenez à la position relative ou à la valeur par défaut */
+  position: relative;
 }
 main #filters_section .filters-accordion .accordion {
   position: relative;
-}
-main #filters_section .filters-accordion .accordion .accordion-button {
-  z-index: 50;
 }
 main #filters_section .filters-accordion .accordion .accordion-collapse {
   position: absolute;
@@ -145,6 +140,7 @@ main #filters_section .filters-accordion .accordion .accordion-collapse .ustensi
 }
 main #filters_section .filters-accordion .filters-count-result {
   font-weight: bold;
+  text-align: right;
 }
 main #filters_section .filter-item {
   width: 200px;

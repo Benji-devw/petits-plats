@@ -56,6 +56,9 @@ function App() {
     const listOfAppliances = document.querySelector('.appliances-container');
     const listOfUtensils = document.querySelector('.ustensils-container');
     const tagsWrapper = document.querySelector('.tags');
+    const searchIconIng = document.querySelector('.search-icon-ing');
+    const searchIconApp = document.querySelector('.search-icon-app');
+    const searchIconUst = document.querySelector('.search-icon-ust');
 
     let newData = [...data];
     let newTag = [];
@@ -67,12 +70,15 @@ function App() {
 
     searchIngredients.addEventListener('input', (event) => {
         searchTagsList(event, newData, 'ingredients');
+        event.target.value.length > 0 ? searchIconIng.style.display = 'none' : searchIconIng.style.display = 'block';
     });
     searchAppliances.addEventListener('input', (event) => {
         searchTagsList(event, newData, 'appliances');
+        event.target.value.length > 0 ? searchIconApp.style.display = 'none' : searchIconApp.style.display = 'block';
     });
     searchUstensils.addEventListener('input', (event) => {
         searchTagsList(event, newData, 'ustensils');
+        event.target.value.length > 0 ? searchIconUst.style.display = 'none' : searchIconUst.style.display = 'block';
     });
 
 
