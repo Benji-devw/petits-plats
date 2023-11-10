@@ -8,22 +8,27 @@ import { createTag } from "./tags/tagItem.js";
 
 // TODO: change method for compare performance
 function filterRecipesBySearch(recipes, termValue) {
-    // Filter for callback function
-    return recipes.filter(recipe => {
-        // console.log(recipe);
-        // Check if recipe name or description contains search value
-        if (recipe.name.toLowerCase().includes(termValue) ||
-            recipe.description.toLowerCase().includes(termValue)) {
-            return true;
+    const filterRecipes = [] // Array to store filtered recipes
+    
+    for (const recipe of recipes) { // Loop through each recipe in the array
+        // Check if the term is present in the recipe name or description
+        if (recipe.name.toLowerCase().indexOf(termValue) > -1 ||
+            recipe.description.toLowerCase().indexOf(termValue) > -1) {
+            filterRecipes.push(recipe) // Add the recipe to the filtered list
         } else {
-            // Check if ingredient is in recipe
-            const findIngredient = recipe.ingredients.find(ingredient => {
-                return ingredient.ingredient.toLowerCase().includes(termValue);
-            });
-            return !!findIngredient;        // !! => convert to boolean
+            // If not found in name or description, check each ingredient
+            for (const ingredient of recipe.ingredients) {
+                // Check if the term is present in the ingredient
+                if (ingredient.ingredient.toLowerCase().indexOf(termValue) > -1) {
+                    filterRecipes.push(recipe) // Add the recipe to the filtered list
+                    break // Move to the next recipe after finding a matching ingredient
+                }
+            }
         }
-    })
+    }
+    return filterRecipes // Return the filtered recipes
 }
+
 
 function filterRecipesByTags(recipes, tags) {
     return recipes.filter(recipe => {
