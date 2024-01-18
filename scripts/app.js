@@ -5,22 +5,32 @@ import { searchTagsList } from "./tags/tagsList_Filter.js";
 import { createTag } from "./tags/tagItem.js";
 
 function filterRecipesBySearch(recipes, termValue) {
-  // Use the filter method on the recipes array
-  return recipes.filter((recipe) => {
-    // Check if the recipe name or description contains the search value
+  const filterRecipes = []; // Array to store filtered recipes
+
+  for (const recipe of recipes) {
+    // Loop through each recipe in the array
+    // Check if the term is present in the recipe name or description
     if (
-      recipe.name.toLowerCase().includes(termValue) ||
-      recipe.description.toLowerCase().includes(termValue)
+      recipe.name.toLowerCase().indexOf(termValue) > -1 ||
+      recipe.description.toLowerCase().indexOf(termValue) > -1
     ) {
-      return true; // If found, include the recipe in the filtered list
+      filterRecipes.push(recipe); // Add the recipe to the filtered list
     } else {
-      // Check if any ingredient matches the search term
-      const findIngredient = recipe.ingredients.find((ingredient) => {
-        return ingredient.ingredient.toLowerCase().includes(termValue);
-      });
-      return !!findIngredient; // Convert to boolean (true or false) and include in the filtered list if found
+      // If not found in name or description, check each ingredient
+      for (const ingredient of recipe.ingredients) {
+        // Check if the term is present in the ingredient
+        if (ingredient.ingredient.toLowerCase().indexOf(termValue) > -1) {
+          filterRecipes.push(recipe); // Add the recipe to the filtered list
+          break; // Move to the next recipe after finding a matching ingredient
+        }
+      }
     }
-  });
+  }
+    // Size test performance
+    const objSize = new Blob([JSON.stringify(recipes)]).size;
+    console.log(`La taille de l'objet est de ${objSize} octets.`);
+
+  return filterRecipes; // Return the filtered recipes
 }
 
 function filterRecipesByTags(recipes, tags) {
@@ -122,12 +132,19 @@ function App() {
   searchBar.addEventListener("input", (event) => {
     searchValue = event.target.value.toLowerCase();
 
+      // For testing performance
+      const t0 = performance.now();
+
     event.target.value.length > 2
       ? (newData = filterRecipesBySearch(
           data,
-          event.target.value.toLowerCase()
+          searchValue
         ))
       : (newData = [...data]);
+
+      // For testing performance
+      const t1 = performance.now();
+      console.log(`Call to doSomething took ${t1 - t0} milliseconds.`);
 
     newData = filterRecipesByTags(newData, newTag);
 
