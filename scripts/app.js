@@ -26,9 +26,10 @@ function filterRecipesBySearch(recipes, termValue) {
       }
     }
   }
-    // Size test performance
+    //TEST: Size test performance
     const objSize = new Blob([JSON.stringify(recipes)]).size;
     console.log(`La taille de l'objet est de ${objSize} octets.`);
+    //ENDTEST:
 
   return filterRecipes; // Return the filtered recipes
 }
@@ -132,7 +133,7 @@ function App() {
   searchBar.addEventListener("input", (event) => {
     searchValue = event.target.value.toLowerCase();
 
-      // For testing performance
+      //TEST: For testing performance
       const t0 = performance.now();
 
     event.target.value.length > 2
@@ -145,6 +146,7 @@ function App() {
       // For testing performance
       const t1 = performance.now();
       console.log(`Call to doSomething took ${t1 - t0} milliseconds.`);
+      //ENDTEST:
 
     newData = filterRecipesByTags(newData, newTag);
 
