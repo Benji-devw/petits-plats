@@ -21,12 +21,6 @@ function filterRecipesBySearch(recipes, termValue) {
       return !!findIngredient; // Convert to boolean (true or false) and include in the filtered list if found
     }
   });
-
-  //TEST: Size test performance
-  const objSize = new Blob([JSON.stringify(filteredRecipes)]).size;
-  console.log(`La taille de l'objet est de ${objSize} octets.`);
-  //ENDTEST:
-
   return filteredRecipes;
 }
 
@@ -129,17 +123,9 @@ function App() {
   searchBar.addEventListener("input", (event) => {
     searchValue = event.target.value.toLowerCase();
 
-    //TEST: For testing performance
-    const t0 = performance.now();
-
     event.target.value.length > 2
       ? (newData = filterRecipesBySearch(data, searchValue))
       : (newData = [...data]);
-
-    // For testing performance
-    const t1 = performance.now();
-    console.log(`Call to doSomething took ${t1 - t0} milliseconds.`);
-    //ENDTEST:
 
     newData = filterRecipesByTags(newData, newTag);
 
