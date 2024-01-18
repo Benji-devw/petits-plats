@@ -4,6 +4,7 @@ import { displayTagsList } from "./tags/tagsList_Display.js";
 import { searchTagsList } from "./tags/tagsList_Filter.js";
 import { createTag } from "./tags/tagItem.js";
 
+
 function filterRecipesBySearch(recipes, termValue) {
   const filterRecipes = []; // Array to store filtered recipes
 
@@ -26,11 +27,6 @@ function filterRecipesBySearch(recipes, termValue) {
       }
     }
   }
-    // TEST: Size test performance
-    const objSize = new Blob([JSON.stringify(filterRecipes)]).size;
-    console.log(`La taille de l'objet est de ${objSize} octets.`);
-    // ENDTEST:
-
   return filterRecipes; // Return the filtered recipes
 }
 
@@ -133,20 +129,9 @@ function App() {
   searchBar.addEventListener("input", (event) => {
     searchValue = event.target.value.toLowerCase();
 
-      // TEST: 1 - Time testing performance
-      const t0 = performance.now();
-
     event.target.value.length > 2
-      ? (newData = filterRecipesBySearch(
-          data,
-          event.target.value.toLowerCase()
-        ))
+      ? (newData = filterRecipesBySearch(data, searchValue))
       : (newData = [...data]);
-
-      // 2 - Time testing performance
-      const t1 = performance.now();
-      console.log(`Call to doSomething took ${t1 - t0} milliseconds.`);
-      // ENDTEST:
 
     newData = filterRecipesByTags(newData, newTag);
 
