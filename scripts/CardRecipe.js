@@ -6,7 +6,7 @@ export default function CardRecipe(data) {
     return `
         <div class="card position-relative">
             <span class="time position-absolute rounded-5">${data.time}min</span>
-            <img src="../assets/images/${data.image}" class="card-img-top" alt="${data.name}">
+            <img src="./assets/images/${data.image}" class="card-img-top" alt="${data.name}">
             <div class="card-body">
                 <h3 class="card-title fw-bold my-4">${data.name}</h3>
                 <h4>RECETTE</h4>
