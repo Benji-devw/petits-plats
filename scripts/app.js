@@ -18,22 +18,29 @@ function filterRecipesBySearch(recipes, termValue) {
       const findIngredient = recipe.ingredients.find((ingredient) => {
         return ingredient.ingredient.toLowerCase().includes(termValue);
       });
+
       return !!findIngredient; // Convert to boolean (true or false) and include in the filtered list if found
     }
   });
+  console.log(filteredRecipes);
   return filteredRecipes;
 }
 
 function filterRecipesByTags(recipes, tags) {
   return recipes.filter((recipe) => {
-    return tags.every((tag) => {
+    return tags.every((tag) => { // every method checks if all elements in an array pass a test and returns true or false
+      // Check if any ingredient matches the tag
       const foundIngredient = recipe.ingredients.find((ingredient) => {
         return ingredient.ingredient.toLowerCase().includes(tag);
       });
+      // Check if the appliance matches the tag
       const foundAppliance = recipe.appliance.toLowerCase().includes(tag);
+      // Check if any utensil matches the tag
       const foundUtensil = recipe.ustensils.find((utensil) => {
         return utensil.toLowerCase().includes(tag);
       });
+      // Return true if any match is found for ingredient, appliance, or utensil
+      // console.log(!!foundIngredient);
       return !!foundIngredient || !!foundAppliance || !!foundUtensil;
     });
   });
@@ -88,12 +95,12 @@ function App() {
   tagsWrapper.addEventListener("click", (event) => {
     if (event.target.tagName !== "SPAN") return; // Check if tag is clicked and not the container
 
-    const item = event.target.textContent; // Get tag name
-    newTag = newTag.filter((tag) => tag !== item); // Remove tag from array
+    const item = event.target.textContent; // Get tag name clicked
+    newTag = newTag.filter((tag) => tag !== item); // remove item of newTag[] if tag is different of item
 
-    searchValue.length > 2
+    searchValue.length > 2 // Check if searchBar value is active
       ? (newData = filterRecipesBySearch(data, searchValue.toLowerCase())) // Filter by saearch value if active
-      : (newData = filterRecipesByTags(data, newTag)); // Filter by tags if no search value
+      : (newData = filterRecipesByTags(data, newTag)); // Filter by tags
 
     displayRecipes(newData);
     displayTagsList(newData, newTag, "ingredients");
@@ -127,7 +134,7 @@ function App() {
       ? (newData = filterRecipesBySearch(data, searchValue))
       : (newData = [...data]);
 
-    newData = filterRecipesByTags(newData, newTag);
+    newTag.length > 0 && (newData = filterRecipesByTags(newData, newTag));
 
     displayRecipes(newData);
     displayTagsList(newData, newTag, "ingredients");
