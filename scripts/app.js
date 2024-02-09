@@ -22,7 +22,6 @@ function filterRecipesBySearch(recipes, termValue) {
       return !!findIngredient; // Convert to boolean (true or false) and include in the filtered list if found
     }
   });
-  console.log(filteredRecipes);
   return filteredRecipes;
 }
 
