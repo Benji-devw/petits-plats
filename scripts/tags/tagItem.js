@@ -6,13 +6,14 @@ function displayTag(item) {
   if (!existingTag) {
       const tag = document.createElement('span');
       tag.classList.add('tag-element', 'px-4', 'py-2', 'm-2');
-        // add icon image in tag-element
+      tag.setAttribute('data-tag', item);
+
+        // add icon delete in tag-element
         const icon = document.createElement('i');
         icon.classList.add('fas', 'fa-times', 'cursor-pointer');
         tag.textContent = item;
         tag.appendChild(icon);
-      tag.setAttribute('data-tag', item);
-
+        
       tag.addEventListener('click', () => {
           tag.remove()
       });

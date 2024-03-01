@@ -186,6 +186,7 @@ main .tags .tag-element {
   background-color: #FFD15B;
   border-radius: 10px;
   cursor: pointer;
+  align-content: center;
   gap: 60px;
 }
 main .tags .tag-element:hover {
@@ -194,7 +195,6 @@ main .tags .tag-element:hover {
 main .tags .fa-times {
   color: #1B1B1B;
   margin-left: 1rem;
-  margin-top: 0.4rem;
   cursor: pointer;
 }
 main #gallery_section {
