@@ -150,12 +150,20 @@ main {
     min-height: 60px;
     width: 100%;
     & .tag-element {
-      background-color: #fff;
-      border-radius: 20px;
+      background-color: $color-yellow;
+      border-radius: 10px;
       cursor: pointer;
+      //width: 180px;
+      gap: 60px;
       &:hover {
         background-color: $color-yellow;
       }
+    }
+    .fa-times {
+        color: $color-dark;
+        margin-left: 1rem;
+      margin-top: .4rem;
+        cursor: pointer;
     }
   }
 

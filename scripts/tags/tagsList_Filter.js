@@ -5,7 +5,7 @@ export function searchTagsList(event, newData, typeElement) {
 
   let uniqueItems = [];
 
-  // get all items from recipes and remove duplicates
+  // get all items from recipes and remove duplicates with "new Set"
   if (typeElement === 'ingredients') {
     uniqueItems = [...new Set(newData.flatMap(recipe => recipe.ingredients.map(ingredient => ingredient.ingredient.toLowerCase())))];
   } else if (typeElement === 'appliances') {
