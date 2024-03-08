@@ -12,7 +12,7 @@ function displayTag(item) {
         const icon = document.createElement('i');
         icon.classList.add('fas', 'fa-times', 'cursor-pointer');
         tag.textContent = item;
-        tag.appendChild(icon);
+        // tag.appendChild(icon);
         
       tag.addEventListener('click', () => {
           tag.remove()
