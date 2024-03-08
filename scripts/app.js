@@ -5,29 +5,27 @@ import { searchTagsList } from "./tags/tagsList_Filter.js";
 import { createTag } from "./tags/tagItem.js";
 
 function filterRecipesBySearch(recipes, termValue) {
-  // Use the filter method on the recipes array
-  const filteredRecipes = recipes.filter((recipe) => {
-    // Check if the recipe name or description contains the search value
-    if (
-      recipe.name.toLowerCase().includes(termValue) ||
-      recipe.description.toLowerCase().includes(termValue)
-    ) {
-      return true; // If found, include the recipe in the filtered list
-    } else {
-      // Check if any ingredient matches the search term
-      const findIngredient = recipe.ingredients.find((ingredient) => {
-        return ingredient.ingredient.toLowerCase().includes(termValue);
-      });
-
-      return !!findIngredient; // Convert to boolean (true or false) and include in the filtered list if found
-    }
-  });
-  return filteredRecipes;
+    // Filter for callback function
+    return recipes.filter(recipe => {
+        // console.log(recipe);
+        // Check if recipe name or description contains search value
+        if (recipe.name.toLowerCase().includes(termValue) ||
+            recipe.description.toLowerCase().includes(termValue)) {
+            return true;
+        } else {
+            // Check if ingredient is in recipe
+            const findIngredient = recipe.ingredients.find(ingredient => {
+                return ingredient.ingredient.toLowerCase().includes(termValue);
+            });
+            return !!findIngredient;        // !! => convert to boolean
+        }
+    })
 }
 
 function filterRecipesByTags(recipes, tags) {
   return recipes.filter((recipe) => {
-    return tags.every((tag) => { // every method checks if all elements in an array pass a test and returns true or false
+    return tags.every((tag) => {
+      // every method checks if all elements in an array pass a test and returns true or false
       // Check if any ingredient matches the tag
       const foundIngredient = recipe.ingredients.find((ingredient) => {
         return ingredient.ingredient.toLowerCase().includes(tag);
@@ -90,22 +88,23 @@ function App() {
       : (searchIconUst.style.display = "block");
   });
 
-  //** Remove tag and update recipes */
-  tagsWrapper.addEventListener("click", (event) => {
-    if (event.target.tagName !== "SPAN") return; // Check if tag is clicked and not the container
+    //** Remove tag and update recipes */
+    tagsWrapper.addEventListener('click', (event) => {
+        if (event.target.tagName !== 'SPAN') return;            // Check if tag is clicked and not the container
+        
+        const item = event.target.textContent;                  // Get tag name
+        newTag = newTag.filter(tag => tag !== item);            // Remove tag from array
+        
+        searchValue.length > 2
+            ? newData = filterRecipesBySearch(data, searchValue.toLowerCase())       // Filter by saearch value if active
+            : newData = filterRecipesByTags(data, newTag);      // Filter by tags if no search value
+        
+        displayRecipes(newData);
+        displayTagsList(newData, newTag, 'ingredients');
+        displayTagsList(newData, newTag, 'appliances');
+        displayTagsList(newData, newTag, 'ustensils');
+    });
 
-    const item = event.target.textContent; // Get tag name clicked
-    newTag = newTag.filter((tag) => tag !== item); // remove item of newTag[] if tag is different of item
-
-    searchValue.length > 2 // Check if searchBar value is active
-      ? (newData = filterRecipesBySearch(data, searchValue.toLowerCase())) // Filter by saearch value if active
-      : (newData = filterRecipesByTags(data, newTag)); // Filter by tags
-
-    displayRecipes(newData);
-    displayTagsList(newData, newTag, "ingredients");
-    displayTagsList(newData, newTag, "appliances");
-    displayTagsList(newData, newTag, "ustensils");
-  });
 
   //** Event for filter by tags */
   listOfIngredients.addEventListener("click", handleFilterClick);
