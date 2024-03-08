@@ -5,29 +5,33 @@ import { searchTagsList } from "./tags/tagsList_Filter.js";
 import { createTag } from "./tags/tagItem.js";
 
 function filterRecipesBySearch(recipes, termValue) {
-  // Use the filter method on the recipes array
-  const filteredRecipes = recipes.filter((recipe) => {
-    // Check if the recipe name or description contains the search value
+  const filterRecipes = [];
+  for (const recipe of recipes) {
+    // Loop through each recipe in the array
+    // Check if the term is present in the recipe name or description
     if (
-      recipe.name.toLowerCase().includes(termValue) ||
-      recipe.description.toLowerCase().includes(termValue)
+      recipe.name.toLowerCase().indexOf(termValue) > -1 ||
+      recipe.description.toLowerCase().indexOf(termValue) > -1
     ) {
-      return true; // If found, include the recipe in the filtered list
+      filterRecipes.push(recipe);
     } else {
-      // Check if any ingredient matches the search term
-      const findIngredient = recipe.ingredients.find((ingredient) => {
-        return ingredient.ingredient.toLowerCase().includes(termValue);
-      });
-
-      return !!findIngredient; // Convert to boolean (true or false) and include in the filtered list if found
+      // If not found in the name or description, check each ingredients
+      for (const ingredient of recipe.ingredients) {
+        // Check if the term is present in the ingredient name
+        if (ingredient.ingredient.toLowerCase().indexOf(termValue) > -1) {
+          filterRecipes.push(recipe);
+          break; // Move to the next recipe after finding a matching ingredient
+        }
+      }
     }
-  });
-  return filteredRecipes;
+  }
+  return filterRecipes; // Return the filtered recipes
 }
 
 function filterRecipesByTags(recipes, tags) {
   return recipes.filter((recipe) => {
-    return tags.every((tag) => { // every method checks if all elements in an array pass a test and returns true or false
+    return tags.every((tag) => {
+      // every method checks if all elements in an array pass a test and returns true or false
       // Check if any ingredient matches the tag
       const foundIngredient = recipe.ingredients.find((ingredient) => {
         return ingredient.ingredient.toLowerCase().includes(tag);
@@ -96,11 +100,10 @@ function App() {
 
     const item = event.target.textContent; // Get tag name clicked
     newTag = newTag.filter((tag) => tag !== item); // remove item of newTag[] if tag is different of item
-    
-    // Update recipes with newTag[] and searchValue
+
     if (searchValue.length > 2) {
       newData = filterRecipesBySearch(data, searchValue.toLowerCase());
-      newData = filterRecipesByTags(newData, newTag);
+      newData = filterRecipesByTags(newData, newTag); // update recipes with newTag[] event
     } else {
       newData = filterRecipesByTags(data, newTag);
     }
